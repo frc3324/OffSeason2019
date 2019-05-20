@@ -4,7 +4,10 @@ import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public abstract class PIDCommand extends Command {
+import java.util.function.DoubleConsumer;
+import java.util.function.DoubleSupplier;
+
+public class PIDCommand extends Command {
 
     protected double kP;
     protected double kI;
@@ -12,19 +15,25 @@ public abstract class PIDCommand extends Command {
     protected double goal;
     protected double dt;
 
-    protected double lastPosition = returnPIDInput();
+    protected DoubleSupplier measurement;
+    protected DoubleConsumer useOutput;
+
+    protected double lastPosition = 0;
     protected double integral = 0;
 
-    protected Notifier notifier = new Notifier(() -> {
-        executePID();
-    });
+    protected Notifier notifier = new Notifier(this::executePID);
 
-    public PIDCommand(double kP, double kI, double kD, double goal, double dt) {
+    public PIDCommand(double kP, double kI, double kD, double goal, double dt, Subsystem subsystem, DoubleSupplier measurement, DoubleConsumer useOutput) {
         this.kP = kP;
         this.kI = kI;
         this.kD = kD;
+
         this.goal = goal;
         this.dt = dt;
+
+        this.requires(subsystem);
+        this.measurement = measurement;
+        this.useOutput = useOutput;
     }
 
     @Override
@@ -34,31 +43,33 @@ public abstract class PIDCommand extends Command {
     }
 
     protected void executePID() {
-        double position = returnPIDInput();
+        double position = measurement.getAsDouble();
         double error = goal - position;
         double deriv = position - lastPosition;
         integral += error;
         lastPosition = position;
 
-        double calculatedValue = (error * kP) + (integral * kI) - (deriv * kD);
-        usePIDOutput(calculatedValue);
+        double output = (error * kP) + (integral * kI) - (deriv * kD);
+        useOutput.accept(output);
     }
 
     @Override
     protected void end() {
+        stopNotifier();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }
+
+    public void stopNotifier() {
         notifier.stop();
         notifier.stop();
     }
 
     @Override
-    protected void interrupted() {
-        notifier.stop();
-        end();
+    protected boolean isFinished() {
+        return measurement.getAsDouble() == goal;
     }
-
-    protected abstract void usePIDOutput(double output);
-
-    protected abstract double returnPIDInput();
-
-    protected abstract boolean isFinished();
 }

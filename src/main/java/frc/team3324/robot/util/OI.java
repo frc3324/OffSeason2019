@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import frc.team3324.robot.Robot;
 import frc.team3324.robot.arm.commands.*;
 import frc.team3324.robot.climber.commands.teleop.ToggleFrontClimb;
 import frc.team3324.robot.climber.commands.teleop.ToggleBackClimb;
@@ -14,14 +15,15 @@ import frc.team3324.robot.drivetrain.commands.teleop.ShiftGears;
 import frc.team3324.robot.intake.cargo.commands.Intake;
 import frc.team3324.robot.intake.cargo.commands.Outtake;
 import frc.team3324.robot.intake.hatch.commands.SwitchIntake;
+import frc.team3324.robot.wrappers.PIDCommand;
 
 /**
  * Class to bind the controls on the physical operator interface to the
  * commands and command groups to allow control of the robot.
  */
 public class OI {
-    public OneEightyDegree oneEightyDegree = new OneEightyDegree();
-    public ZeroDegree zeroDegree = new ZeroDegree();
+    public PIDCommand oneEightyDegree = new PIDCommand(0.55, 0.001, 0, Math.toRadians(180), 0.01, Robot.arm, Robot.arm::getArmRadians, speed -> Robot.arm.setArmSpeed(speed));
+    public PIDCommand zeroDegree = new PIDCommand(0.55, 0.001, 0, Math.toRadians(0), 0.01, Robot.arm, Robot.arm::getArmRadians, speed -> Robot.arm.setArmSpeed(speed));
 
     private static final int BUTTON_A = 1;
     private static final int BUTTON_B = 2;

@@ -127,6 +127,7 @@ public class Arm extends Subsystem {
         armMotorOne.set(speed);
 
         armSpeed.setDouble(speed);
+        updateShuffleBoard();
     }
 
     private boolean armIsOnLimitSwitchOrHardstop(double speed) {

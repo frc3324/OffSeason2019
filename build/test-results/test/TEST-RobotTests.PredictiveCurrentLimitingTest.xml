@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RobotTests.PredictiveCurrentLimitingTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2019-04-07T03:40:23" hostname="mani-main" time="0.038">
+<testsuite name="RobotTests.PredictiveCurrentLimitingTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2019-05-20T03:46:14" hostname="mani-main" time="0.031">
   <properties/>
-  <testcase name="getVoltageHighRPMTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.025"/>
-  <testcase name="getVoltageMultipleMotorsTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
+  <testcase name="getVoltageHighRPMTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.018"/>
+  <testcase name="getVoltageMultipleMotorsTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.002"/>
   <testcase name="getVoltageDifferentGearRatioTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
   <testcase name="getVoltageMultipleMotorsHighRPMTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
-  <testcase name="getVoltageNonLimitedTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.002"/>
+  <testcase name="getVoltageNonLimitedTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
   <testcase name="getVoltageGearRatioLowRPMTest()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
   <testcase name="getVoltageTestSame()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
-  <testcase name="getVoltageTestDifferent()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.001"/>
+  <testcase name="getVoltageTestDifferent()" classname="RobotTests.PredictiveCurrentLimitingTest" time="0.002"/>
   <system-out><![CDATA[Kw0.0022050040817495667
 R0.0916030534351145
 volt max9.363103848302135

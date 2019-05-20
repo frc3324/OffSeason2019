@@ -21,9 +21,10 @@ public class PIDCommand extends Command {
     protected double lastPosition = 0;
     protected double integral = 0;
 
-    protected Notifier notifier = new Notifier(this::executePID);
+    protected Notifier notifier = new Notifier(this ::executePID);
 
-    public PIDCommand(double kP, double kI, double kD, double goal, double dt, Subsystem subsystem, DoubleSupplier measurement, DoubleConsumer useOutput) {
+    public PIDCommand(double kP, double kI, double kD, double goal, double dt, Subsystem subsystem, DoubleSupplier measurement,
+                      DoubleConsumer useOutput) {
         this.kP = kP;
         this.kI = kI;
         this.kD = kD;

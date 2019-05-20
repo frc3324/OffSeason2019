@@ -14,12 +14,9 @@ public class OneEightyDegree extends Command {
     private double kD = 0;
     private double integral = 0;
     private double error;
-    private Notifier notifier = new Notifier(() ->{ executePID(); });
+    private Notifier notifier = new Notifier(() -> { executePID(); });
 
-
-    public OneEightyDegree() {
-        requires(Robot.arm);
-    }
+    public OneEightyDegree() { requires(Robot.arm); }
 
     @Override
     protected void initialize() {
@@ -41,7 +38,6 @@ public class OneEightyDegree extends Command {
         return (OI.secondaryController.getY(GenericHID.Hand.kLeft) > 0) || (OI.secondaryController.getBButton());
     }
 
-
     public void stopNotifier() {
         notifier.stop();
         notifier.stop();
@@ -58,4 +54,3 @@ public class OneEightyDegree extends Command {
         end();
     }
 }
-

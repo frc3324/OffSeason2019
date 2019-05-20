@@ -14,12 +14,7 @@ import java.nio.file.Path;
  * Class to generate paths or read paths from file.
  */
 public class PathGenerator {
-    public enum path {
-        LEFT_LEVEL_1,
-        LEFT_LEVEL_2,
-        RIGHT_LEVEL_1,
-        RIGHT_LEVEL_2
-    }
+    public enum path { LEFT_LEVEL_1, LEFT_LEVEL_2, RIGHT_LEVEL_1, RIGHT_LEVEL_2 }
 
     /**
      * Generates path from specified file.
@@ -53,26 +48,25 @@ public class PathGenerator {
 
         try {
             switch (path) {
-                case LEFT_LEVEL_1:
+            case LEFT_LEVEL_1:
                 file = new File(leftLevelOne);
                 trajectory = Pathfinder.readFromCSV(file);
                 break;
-                case LEFT_LEVEL_2:
+            case LEFT_LEVEL_2:
                 file = new File(leftLevelTwo);
                 trajectory = Pathfinder.readFromCSV(file);
                 break;
-                case RIGHT_LEVEL_1:
+            case RIGHT_LEVEL_1:
                 file = new File(rightLevelOne);
                 trajectory = Pathfinder.readFromCSV(file);
                 break;
-                case RIGHT_LEVEL_2:
+            case RIGHT_LEVEL_2:
                 file = new File(rightLevelTwo);
                 trajectory = Pathfinder.readFromCSV(file);
                 break;
-                default:
+            default:
                 trajectory = Pathfinder.generate(defaultPoints, config);
                 break;
-
             }
         } catch (Exception CouldNotRunAuto) {
             BadLog.createValue("Auto Read Failed", "true");

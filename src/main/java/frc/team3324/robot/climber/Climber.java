@@ -20,10 +20,12 @@ public class Climber extends Subsystem {
     /**
      * Creates an instance of the Climber class.
      */
-    public Climber() { }
+    public Climber() {}
 
-    private DoubleSolenoid frontClimber = new DoubleSolenoid(Constants.Climber.CLIMBER_BACK_FORWARD, Constants.Climber.CLIMBER_BACK_BACKWARD);
-    private DoubleSolenoid backClimber = new DoubleSolenoid(Constants.Climber.CLIMBER_FRONT_FORWARD, Constants.Climber.CLIMBER_FRONT_BACKWARD);
+    private DoubleSolenoid frontClimber =
+        new DoubleSolenoid(Constants.Climber.CLIMBER_BACK_FORWARD, Constants.Climber.CLIMBER_BACK_BACKWARD);
+    private DoubleSolenoid backClimber =
+        new DoubleSolenoid(Constants.Climber.CLIMBER_FRONT_FORWARD, Constants.Climber.CLIMBER_FRONT_BACKWARD);
     /**
      * Sets the frontClimber double solenoid status to forward.
      */

@@ -25,7 +25,6 @@ import java.util.function.Function;
 
 import static frc.team3324.robot.Robot.pdp;
 
-
 /**
  * Subsystem class to control the drivetrain and peripheral drivetrain systems.
  */
@@ -42,21 +41,29 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
     private NetworkTableEntry rightRate = sensorTab.add("Right Encoder Rate", 0).withPosition(4, 0).getEntry();
     private NetworkTableEntry leftRate = sensorTab.add("Left Encoder Rate", 0).withPosition(5, 0).getEntry();
 
-    private NetworkTableEntry leftDistanceGraph = sensorTab.add("Left Encoder Distance Graph", 0).withPosition(0, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
-    private NetworkTableEntry rightDistanceGraph = sensorTab.add("Right Encoder Distance Graph", 0).withPosition(1, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
-    private NetworkTableEntry rightRawGraph = sensorTab.add("Right Encoder Raw Graph", 0).withPosition(2, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
-    private NetworkTableEntry leftRawGraph = sensorTab.add("Left Encoder Raw Graph", 0).withPosition(3, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
-    private NetworkTableEntry rightRateGraph = sensorTab.add("Right Encoder Rate Graph", 0).withPosition(4, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
-    private NetworkTableEntry leftRateGraph = sensorTab.add("Left Encoder Rate Graph", 0).withPosition(5, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
+    private NetworkTableEntry leftDistanceGraph =
+        sensorTab.add("Left Encoder Distance Graph", 0).withPosition(0, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
+    private NetworkTableEntry rightDistanceGraph =
+        sensorTab.add("Right Encoder Distance Graph", 0).withPosition(1, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
+    private NetworkTableEntry rightRawGraph =
+        sensorTab.add("Right Encoder Raw Graph", 0).withPosition(2, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
+    private NetworkTableEntry leftRawGraph =
+        sensorTab.add("Left Encoder Raw Graph", 0).withPosition(3, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
+    private NetworkTableEntry rightRateGraph =
+        sensorTab.add("Right Encoder Rate Graph", 0).withPosition(4, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
+    private NetworkTableEntry leftRateGraph =
+        sensorTab.add("Left Encoder Rate Graph", 0).withPosition(5, 1).withWidget(BuiltInWidgets.kGraph).getEntry();
 
-    private NetworkTableEntry  gyroYaw = sensorTab.add("Gyro Yaw", 0).withPosition(0, 2).getEntry();
+    private NetworkTableEntry gyroYaw = sensorTab.add("Gyro Yaw", 0).withPosition(0, 2).getEntry();
 
-    private DoubleSolenoid gearShifter = new DoubleSolenoid(Constants.DriveTrain.DRIVETRAIN_PCM_MODULE, Constants.DriveTrain.DRIVETRAIN_PORT_FORWARD, Constants.DriveTrain.DRIVETRAIN_PORT_REVERSE);
+    private DoubleSolenoid gearShifter =
+        new DoubleSolenoid(Constants.DriveTrain.DRIVETRAIN_PCM_MODULE, Constants.DriveTrain.DRIVETRAIN_PORT_FORWARD,
+                           Constants.DriveTrain.DRIVETRAIN_PORT_REVERSE);
 
     public Encoder lEncoder =
-            new Encoder(Constants.DriveTrain.LEFT_ENCODER_PORT_A, Constants.DriveTrain.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
+        new Encoder(Constants.DriveTrain.LEFT_ENCODER_PORT_A, Constants.DriveTrain.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
     public Encoder rEncoder =
-            new Encoder(Constants.DriveTrain.RIGHT_ENCODER_PORT_A, Constants.DriveTrain.RIGHT_ENCODER_PORT_B, true, Encoder.EncodingType.k4X);
+        new Encoder(Constants.DriveTrain.RIGHT_ENCODER_PORT_A, Constants.DriveTrain.RIGHT_ENCODER_PORT_B, true, Encoder.EncodingType.k4X);
 
     private static AHRS gyro = new AHRS(SPI.Port.kMXP);
 
@@ -67,7 +74,6 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
     private WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.DriveTrain.BR_MOTOR_PORT);
 
     public DifferentialDrive mDrive = new DifferentialDrive(frMotor, blMotor);
-
 
     /**
      * Creates an instance of the DriveTrain class.
@@ -108,7 +114,7 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
      * @see Logger
      */
     private void initializeLogger() {
-        Logger.createTopic("drivetrain/Total Current", "Amps", this::getTotalCurrent);
+        Logger.createTopic("drivetrain/Total Current", "Amps", this ::getTotalCurrent);
         Logger.createTopic("drivetrain/FL Current", "Amps", () -> pdp.getCurrent(Constants.DriveTrain.FL_PDP_MOTOR_PORT));
         Logger.createTopic("drivetrain/BL Current", "Amps", () -> pdp.getCurrent(Constants.DriveTrain.BL_PDP_MOTOR_PORT));
         Logger.createTopic("drivetrain/FR Current", "Amps", () -> pdp.getCurrent(Constants.DriveTrain.FR_PDP_MOTOR_PORT));
@@ -121,10 +127,9 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
         Logger.createTopic("drivetrain/Left Rate", "m/s", () -> lEncoder.getRate());
         Logger.createTopic("drivetrain/Right Rate", "m/s", () -> rEncoder.getRate());
         Logger.createTopic("drivetrain/Left Voltage", "V",
-                () -> (Robot.driveTrain.blMotor.getMotorOutputVoltage() + Robot.driveTrain.flMotor.getMotorOutputVoltage()));
+                           () -> (Robot.driveTrain.blMotor.getMotorOutputVoltage() + Robot.driveTrain.flMotor.getMotorOutputVoltage()));
         Logger.createTopic("drivetrain/Right Voltage", "V",
-                () -> (Robot.driveTrain.brMotor.getMotorOutputVoltage() + Robot.driveTrain.frMotor.getMotorOutputVoltage()));
-
+                           () -> (Robot.driveTrain.brMotor.getMotorOutputVoltage() + Robot.driveTrain.frMotor.getMotorOutputVoltage()));
     }
 
     /**
@@ -169,9 +174,7 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
         double left;
         double right;
 
-        if (forward == 0) {
-            quickTurn = true;
-        }
+        if (forward == 0) { quickTurn = true; }
 
         if (quickTurn) {
             left = forward + rotation;
@@ -195,7 +198,7 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
             left /= maxMagnitude;
             right /= maxMagnitude;
         }
-        return new double[]{left, right};
+        return new double[] {left, right};
     }
     /**
      * Resets the gyro to zero.
@@ -241,11 +244,12 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
      *
      * @see DoubleSolenoid
      */
-    public void shiftGears() { if (gearShifter.get() == DoubleSolenoid.Value.kForward) {
-        gearShifter.set(DoubleSolenoid.Value.kReverse);
-    } else {
-        gearShifter.set(DoubleSolenoid.Value.kForward);
-    }
+    public void shiftGears() {
+        if (gearShifter.get() == DoubleSolenoid.Value.kForward) {
+            gearShifter.set(DoubleSolenoid.Value.kReverse);
+        } else {
+            gearShifter.set(DoubleSolenoid.Value.kForward);
+        }
     }
 
     protected void initDefaultCommand() { setDefaultCommand(new Drive()); }
@@ -258,6 +262,6 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
      */
     public double getTotalCurrent() {
         return pdp.getCurrent(Constants.DriveTrain.FL_PDP_MOTOR_PORT) + pdp.getCurrent(Constants.DriveTrain.BL_PDP_MOTOR_PORT) +
-                pdp.getCurrent(Constants.DriveTrain.FR_PDP_MOTOR_PORT) + pdp.getCurrent(Constants.DriveTrain.BR_PDP_MOTOR_PORT);
+            pdp.getCurrent(Constants.DriveTrain.FR_PDP_MOTOR_PORT) + pdp.getCurrent(Constants.DriveTrain.BR_PDP_MOTOR_PORT);
     }
 }

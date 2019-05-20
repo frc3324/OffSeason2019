@@ -52,7 +52,7 @@ public class MotorConstants {
 
         @Override
         public void reduce(double reduction) {
-            FREE_SPEED =  FREE_SPEED / reduction;
+            FREE_SPEED = FREE_SPEED / reduction;
             STALL_TORQUE = STALL_TORQUE * reduction;
         }
     }
@@ -107,7 +107,7 @@ public class MotorConstants {
 
         @Override
         public void reduce(double reduction) {
-            FREE_SPEED =  FREE_SPEED / reduction;
+            FREE_SPEED = FREE_SPEED / reduction;
             STALL_TORQUE = STALL_TORQUE * reduction;
         }
     }
@@ -119,9 +119,7 @@ public class MotorConstants {
         public double STALL_CURRENT = 53;
         public double R = 12 / STALL_CURRENT;
 
-        public Bag(double numberOfMotors) {
-            STALL_TORQUE *= numberOfMotors;
-        }
+        public Bag(double numberOfMotors) { STALL_TORQUE *= numberOfMotors; }
 
         @Override
         public double getR() {
@@ -160,9 +158,8 @@ public class MotorConstants {
 
         @Override
         public void reduce(double reduction) {
-            FREE_SPEED =  FREE_SPEED / reduction;
+            FREE_SPEED = FREE_SPEED / reduction;
             STALL_TORQUE = STALL_TORQUE * reduction;
         }
     }
-
 }

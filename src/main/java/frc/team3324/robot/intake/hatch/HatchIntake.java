@@ -9,15 +9,13 @@ import frc.team3324.robot.util.Constants;
  * Subsystem class to control hatch intake/outtake system.
  */
 public class HatchIntake extends Subsystem {
-    private DoubleSolenoid hatchIntake = new DoubleSolenoid(
-            Constants.HatchIntake.HATCH_INTAKE_PORT_FORWARD, Constants.HatchIntake.HATCH_INTAKE_PORT_BACKWARD);
+    private DoubleSolenoid hatchIntake =
+        new DoubleSolenoid(Constants.HatchIntake.HATCH_INTAKE_PORT_FORWARD, Constants.HatchIntake.HATCH_INTAKE_PORT_BACKWARD);
 
     /**
      * Creates an instance of the HatchIntake class.
      */
-    public HatchIntake() {
-        SmartDashboard.putBoolean("Intake", false);
-    }
+    public HatchIntake() { SmartDashboard.putBoolean("Intake", false); }
 
     /**
      * Switches intake state to forward if reverse/off and reverse if forward.
@@ -38,5 +36,5 @@ public class HatchIntake extends Subsystem {
      * @see DoubleSolenoid
      */
 
-    public void initDefaultCommand() { }
+    public void initDefaultCommand() {}
 }

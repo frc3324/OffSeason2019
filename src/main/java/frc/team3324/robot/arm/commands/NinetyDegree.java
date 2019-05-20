@@ -21,14 +21,14 @@ public class NinetyDegree extends PIDCommand {
 
     @Override
     protected boolean isFinished() {
-        return (goal == getPosition() || (OI.secondaryController.getY(GenericHID.Hand.kLeft) > 0) || (OI.secondaryController.getY(GenericHID.Hand.kRight) > 0) || (OI.secondaryController.getBButton()));
+        return (goal == getPosition() || (OI.secondaryController.getY(GenericHID.Hand.kLeft) > 0) ||
+                (OI.secondaryController.getY(GenericHID.Hand.kRight) > 0) || (OI.secondaryController.getBButton()));
     }
 
     @Override
     protected double returnPIDInput() {
         return Robot.arm.getArmRadians();
     }
-
 
     @Override
     protected void usePIDOutput(double output) {

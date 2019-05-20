@@ -20,9 +20,7 @@ public class Odometry extends Command {
     NetworkTableEntry robotY = table.getEntry("robotY");
     NetworkTableEntry robotHeading = table.getEntry("robotHeading");
 
-    Notifier notifier = new Notifier(() -> {
-        followRobot();
-    });
+    Notifier notifier = new Notifier(() -> { followRobot(); });
     /**
      * Creates an instance of the Odometry class.
      *

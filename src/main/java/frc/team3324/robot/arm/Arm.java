@@ -39,16 +39,15 @@ public class Arm extends Subsystem {
     private DigitalInput backSwitch = new DigitalInput(Constants.Arm.BACK_LIMIT_SWITCH);
 
     private static Encoder encoder =
-            new Encoder(Constants.Arm.ENCODER_PORT_A, Constants.Arm.ENCODER_PORT_B, true, Encoder.EncodingType.k4X);
+        new Encoder(Constants.Arm.ENCODER_PORT_A, Constants.Arm.ENCODER_PORT_B, true, Encoder.EncodingType.k4X);
     private WPI_TalonSRX armMotorOne = new WPI_TalonSRX(Constants.Arm.MOTOR_PORT_ARM_ONE);
     private WPI_VictorSPX armMotorTwo = new WPI_VictorSPX(Constants.Arm.MOTOR_PORT_ARM_TWO);
     private WPI_TalonSRX armMotorThree = new WPI_TalonSRX(Constants.Arm.MOTOR_PORT_ARM_THREE);
 
-   MiniCim armMotor = new MiniCim(3);
-   PredictiveCurrentLimiting predictiveCurrentLimiting = new PredictiveCurrentLimiting(8, -8, gearRatio, armMotor);
+    MiniCim armMotor = new MiniCim(3);
+    PredictiveCurrentLimiting predictiveCurrentLimiting = new PredictiveCurrentLimiting(8, -8, gearRatio, armMotor);
 
-
-   /**
+    /**
      * Creates an instance of the Arm class.
      */
 
@@ -56,9 +55,8 @@ public class Arm extends Subsystem {
         initializeLogger();
         initializeCurrentLimiting();
         setBrakeMode();
-        encoder.setDistancePerPulse(1.0/256.0);
+        encoder.setDistancePerPulse(1.0 / 256.0);
     }
-
 
     private void initializeCurrentLimiting() {
         armMotorOne.configContinuousCurrentLimit(8, 0);
@@ -66,7 +64,6 @@ public class Arm extends Subsystem {
         armMotorTwo.follow(armMotorOne);
         armMotorThree.follow(armMotorOne);
     }
-
 
     public void setBrakeMode() {
         armMotorOne.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -94,16 +91,13 @@ public class Arm extends Subsystem {
         armRPM = RPM;
     }
 
-    public double getRPM() {
-        return armRPM;
-    }
+    public double getRPM() { return armRPM; }
 
-    public double getArmRadians() {
-        return encoder.get() * ((Math.PI * 2)/Constants.Arm.ENCODER_TICKS_PER_REV);
-    }
+    public double getArmRadians() { return encoder.get() * ((Math.PI * 2) / Constants.Arm.ENCODER_TICKS_PER_REV); }
 
     public double getPDPMax() {
-        return Robot.pdp.getCurrent(Constants.Arm.MOTOR_PORT_PDP_ONE) + Robot.pdp.getCurrent(Constants.Arm.MOTOR_PORT_PDP_TWO) + Robot.pdp.getCurrent(Constants.Arm.MOTOR_PORT_PDP_THREE);
+        return Robot.pdp.getCurrent(Constants.Arm.MOTOR_PORT_PDP_ONE) + Robot.pdp.getCurrent(Constants.Arm.MOTOR_PORT_PDP_TWO) +
+            Robot.pdp.getCurrent(Constants.Arm.MOTOR_PORT_PDP_THREE);
     }
 
     /**
@@ -112,9 +106,7 @@ public class Arm extends Subsystem {
      * @param speed, -1.0 to 1.0
      */
     public void setArmSpeed(double speed) {
-        if (frontSwitch.get()) {
-            encoder.reset();
-        }
+        if (frontSwitch.get()) { encoder.reset(); }
         if (armIsOnLimitSwitchOrHardstop(speed)) {
             OI.secondaryController.setRumble(GenericHID.RumbleType.kLeftRumble, 0.2);
             speed = 0;
@@ -131,7 +123,8 @@ public class Arm extends Subsystem {
     }
 
     private boolean armIsOnLimitSwitchOrHardstop(double speed) {
-        return (encoder.get() <= 0 && speed < 0)|| (encoder.get() >= (Constants.Arm.ENCODER_TICKS_PER_REV) / 2 && speed > 0) || ((frontSwitch.get() && speed < 0) || (backSwitch.get() && speed > 0));
+        return (encoder.get() <= 0 && speed < 0) || (encoder.get() >= (Constants.Arm.ENCODER_TICKS_PER_REV) / 2 && speed > 0) ||
+            ((frontSwitch.get() && speed < 0) || (backSwitch.get() && speed > 0));
     }
 
     public void resetArmSpeed(double speed) {
@@ -142,15 +135,12 @@ public class Arm extends Subsystem {
         armMotorOne.set(speed);
     }
 
-    public void setRawArm(double speed) {
-            armMotorOne.set(speed);
-    }
+    public void setRawArm(double speed) { armMotorOne.set(speed); }
 
-    public boolean getFrontSwitch() {
-        return frontSwitch.get();
-    }
+    public boolean getFrontSwitch() { return frontSwitch.get(); }
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new ControlArm()); }
+        setDefaultCommand(new ControlArm());
+    }
 }

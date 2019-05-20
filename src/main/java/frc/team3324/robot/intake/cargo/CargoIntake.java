@@ -23,7 +23,7 @@ public class CargoIntake extends Subsystem {
      * <p>Populate badlog with limit switch status and current (amps) value.</p>
      */
     public CargoIntake() {
-//        BadLog.createTopic("cargointake/isIntook", "Boolean", () -> getLimitSwitchAsDouble());
+        //        BadLog.createTopic("cargointake/isIntook", "Boolean", () -> getLimitSwitchAsDouble());
         intakeMotor.setInverted(true);
         BadLog.createTopic("cargointake/Current Draw", "amps", () -> pdp.getCurrent(Constants.CargoIntake.CARGO_INTAKE_PDP_PORT));
     }
@@ -46,9 +46,7 @@ public class CargoIntake extends Subsystem {
      *
      * @return boolean, true or false.
      */
-    public boolean isSwitchPressed() {
-        return !intakeLimitSwitch.get();
-    }
+    public boolean isSwitchPressed() { return !intakeLimitSwitch.get(); }
 
-    public void initDefaultCommand() { }
+    public void initDefaultCommand() {}
 }

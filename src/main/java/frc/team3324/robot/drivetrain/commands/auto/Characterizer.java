@@ -18,7 +18,6 @@ import java.util.function.Supplier;
  */
 public class Characterizer extends Command {
 
-
     private Supplier<Double> leftEncoderPosition;
     private Supplier<Double> leftEncoderRate;
     private Supplier<Double> rightEncoderPosition;
@@ -29,7 +28,6 @@ public class Characterizer extends Command {
 
     private double priorAutospeed = 0;
     private Number[] numberArray = new Number[9];
-
 
     @Override
     protected void initialize() {

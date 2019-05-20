@@ -17,12 +17,9 @@ public class ZeroDegree extends Command {
     private double kD = 0;
     private double integral = 0;
     private double error;
-    Notifier notifier = new Notifier(() ->{ executePID(); });
+    Notifier notifier = new Notifier(() -> { executePID(); });
 
-
-    public ZeroDegree() {
-        requires(Robot.arm);
-    }
+    public ZeroDegree() { requires(Robot.arm); }
 
     @Override
     protected void initialize() {
@@ -60,4 +57,3 @@ public class ZeroDegree extends Command {
         end();
     }
 }
-

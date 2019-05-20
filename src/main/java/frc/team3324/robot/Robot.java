@@ -29,7 +29,6 @@ public class Robot extends TimedRobot {
     public static Compressor compressor = new Compressor(0);
     private ShuffleboardTab compressorTab = Shuffleboard.getTab("Compressor");
 
-
     /*
      * Instantiate subsystems
      */
@@ -87,16 +86,14 @@ public class Robot extends TimedRobot {
         arm.updateRPM();
     }
 
-    public void disabledInit() {
-    }
+    public void disabledInit() {}
 
     @Override
     public void autonomousInit() {
-        Scheduler.getInstance().add(new Odometry(5.239/3.281, 17.685/3.281, 0));
+        Scheduler.getInstance().add(new Odometry(5.239 / 3.281, 17.685 / 3.281, 0));
         Scheduler.getInstance().add(new JaciPathfinding(PathGenerator.path.LEFT_LEVEL_2, true, false));
     }
 
     @Override
-    public void teleopPeriodic() {
-    }
+    public void teleopPeriodic() {}
 }

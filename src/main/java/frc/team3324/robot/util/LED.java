@@ -32,11 +32,9 @@ public class LED {
             redLED.startPulse();
             timer.stop();
             timer.reset();
-        }
-        else if (redLED.get() && timer.get() > pulseTime) {
+        } else if (redLED.get() && timer.get() > pulseTime) {
             redLED.set(false);
-        }
-        else {
+        } else {
             timer.start();
         }
     }

@@ -20,19 +20,13 @@ public class Logger {
      * @param path, path name
      * @param compress, whether to compress
      */
-    public Logger(String path, Boolean compress) {
-        logger = BadLog.init(path, compress);
-    }
+    public Logger(String path, Boolean compress) { logger = BadLog.init(path, compress); }
 
     class InvalidArrayException extends Exception {
-        InvalidArrayException(String s) {
-            super(s);
-        }
+        InvalidArrayException(String s) { super(s); }
     }
 
-    public void createShuffleboardTab(String... tabNames) {
-
-    }
+    public void createShuffleboardTab(String... tabNames) {}
 
     /**
      * Check whether a two dimensional array is rectangular.
@@ -50,8 +44,7 @@ public class Logger {
                     throw new InvalidArrayException("Array must be rectangular. See row " + i + " and " + (i + 1) + ".");
                 }
             }
-        }
-        catch (InvalidArrayException ex) {
+        } catch (InvalidArrayException ex) {
             System.out.println("Invalid array.");
             System.out.println(ex.getMessage());
         }
@@ -97,7 +90,8 @@ public class Logger {
         //
         for (int i = 0; i < networkTablesInfo.length; i++) {
             for (int j = 0; j < networkTablesInfo[i].length; j++) {
-                tab.add(networkTablesInfo[i][j].toString(), networkTablesInfo[i][j + 1]).withPosition((int)networkTablesInfo[i][j + 2], (int)networkTablesInfo[i][i]);
+                tab.add(networkTablesInfo[i][j].toString(), networkTablesInfo[i][j + 1])
+                    .withPosition((int)networkTablesInfo[i][j + 2], (int)networkTablesInfo[i][i]);
             }
         }
     }
@@ -107,9 +101,7 @@ public class Logger {
         logger.log();
     }
 
-    public void finishInitialization() {
-        logger.finishInitialization();
-    }
+    public void finishInitialization() { logger.finishInitialization(); }
 
     /**
      * Create logger topics using array of strings for names and units.
@@ -123,13 +115,13 @@ public class Logger {
             if (loggerStrings[i][2] instanceof Boolean) {
                 if ((boolean)loggerStrings[i][2]) {
                     loggerStrings[i][2] = 1.0;
-                }
-                else {
+                } else {
                     loggerStrings[i][2] = 0.0;
                 }
             }
             // TODO: Type check loggerStrings
-            BadLog.createTopic(loggerStrings[i][0].toString(), loggerStrings[i][1].toString(), (Supplier<Double>)loggerStrings[i][2], attributes);
+            BadLog.createTopic(loggerStrings[i][0].toString(), loggerStrings[i][1].toString(), (Supplier<Double>)loggerStrings[i][2],
+                               attributes);
         }
     }
 
@@ -137,11 +129,11 @@ public class Logger {
         BadLog.createTopic(name, unit, supplier, attributes);
     }
 
-    public static  double boolToDouble(boolean bool) {
-       if (bool) {
-           return 1;
-       } else {
-           return 0;
-       }
+    public static double boolToDouble(boolean bool) {
+        if (bool) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

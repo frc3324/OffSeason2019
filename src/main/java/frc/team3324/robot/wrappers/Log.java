@@ -5,16 +5,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team3324.robot.Robot;
 
 public class Log extends Command {
-    Notifier notifier = new Notifier(() -> { log();});
+    Notifier notifier = new Notifier(() -> { log(); });
 
     @Override
     protected void initialize() {
         notifier.startPeriodic(0.04);
     }
 
-    private void log() {
-        Robot.logger.log();
-    }
+    private void log() { Robot.logger.log(); }
 
     @Override
     protected boolean isFinished() {

@@ -13,8 +13,8 @@ public class PredictiveCurrentLimiting {
     }
 
     public void setCurrentLimits(double min, double max) {
-       this.minCurrent = min;
-       this.maxCurrent = max;
+        this.minCurrent = min;
+        this.maxCurrent = max;
     }
 
     public double getVoltage(double voltage, double angularVelocity) {

@@ -9,9 +9,7 @@ import frc.team3324.robot.util.OI;
  */
 public class Outtake extends Command {
 
-    public Outtake() {
-        requires(Robot.cargoIntake);
-    }
+    public Outtake() { requires(Robot.cargoIntake); }
 
     @Override
     protected void initialize() {

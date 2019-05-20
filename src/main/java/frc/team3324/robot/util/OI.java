@@ -22,8 +22,10 @@ import frc.team3324.robot.wrappers.PIDCommand;
  * commands and command groups to allow control of the robot.
  */
 public class OI {
-    public PIDCommand oneEightyDegree = new PIDCommand(0.55, 0.001, 0, Math.toRadians(180), 0.01, Robot.arm, Robot.arm::getArmRadians, speed -> Robot.arm.setArmSpeed(speed));
-    public PIDCommand zeroDegree = new PIDCommand(0.55, 0.001, 0, Math.toRadians(0), 0.01, Robot.arm, Robot.arm::getArmRadians, speed -> Robot.arm.setArmSpeed(speed));
+    public PIDCommand oneEightyDegree = new PIDCommand(0.55, 0.001, 0, Math.toRadians(180), 0.01, Robot.arm, Robot.arm::getArmRadians,
+                                                       speed -> Robot.arm.setArmSpeed(speed));
+    public PIDCommand zeroDegree =
+        new PIDCommand(0.55, 0.001, 0, Math.toRadians(0), 0.01, Robot.arm, Robot.arm::getArmRadians, speed -> Robot.arm.setArmSpeed(speed));
 
     private static final int BUTTON_A = 1;
     private static final int BUTTON_B = 2;
@@ -73,7 +75,6 @@ public class OI {
 
         PRIMARY_X_BUTTON.whenPressed(new NinetyLeft());
         PRIMARY_B_BUTTON.whenPressed(new NinetyRight());
-
 
         SECONDARY_Y_BUTTON.whileHeld(new Outtake());
         SECONDARY_X_BUTTON.whileHeld(new Intake());

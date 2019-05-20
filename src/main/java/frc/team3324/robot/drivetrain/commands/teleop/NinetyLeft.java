@@ -17,12 +17,9 @@ public class NinetyLeft extends Command {
     private double kD = 0;
     private double integral = 0;
     private double error;
-    private Notifier notifier = new Notifier(() ->{ executePID(); });
+    private Notifier notifier = new Notifier(() -> { executePID(); });
 
-
-    public NinetyLeft() {
-        requires(Robot.driveTrain);
-    }
+    public NinetyLeft() { requires(Robot.driveTrain); }
 
     @Override
     protected void initialize() {
@@ -40,7 +37,8 @@ public class NinetyLeft extends Command {
     }
     @Override
     protected boolean isFinished() {
-        return OI.primaryController.getYButton() || OI.primaryController.getY(GenericHID.Hand.kLeft) > 0.1 || OI.primaryController.getY(GenericHID.Hand.kRight) > 0.1;
+        return OI.primaryController.getYButton() || OI.primaryController.getY(GenericHID.Hand.kLeft) > 0.1 ||
+            OI.primaryController.getY(GenericHID.Hand.kRight) > 0.1;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package RobotTests;
 
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,6 @@ class Main {
 
     @Test
     public void initialTest() {
-        assertEquals(5,5);
+        assertEquals(5, 5);
     }
-
 }

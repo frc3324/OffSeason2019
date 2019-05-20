@@ -16,7 +16,6 @@ public class PredictiveCurrentLimitingTest {
     private PredictiveCurrentLimiting predictiveCurrentLimiting = new PredictiveCurrentLimiting(-30, 30, 1, cim);
     private PredictiveCurrentLimiting predictiveCurrentLimitingGearRatio = new PredictiveCurrentLimiting(-30, 30, 2, gearReductionCim);
 
-
     @Test
     public void getVoltageTestSame() {
         double voltage = 12;
@@ -26,7 +25,7 @@ public class PredictiveCurrentLimitingTest {
         voltage = Math.max(voltage, voltage_min);
         voltage = Math.min(voltage, voltage_max);
         System.out.println("Predicted Voltage: " + predictedVoltage + "Test Voltage" + voltage);
-        assert(voltage == predictedVoltage);
+        assert (voltage == predictedVoltage);
     }
 
     @Test
@@ -38,7 +37,7 @@ public class PredictiveCurrentLimitingTest {
         voltage = Math.max(voltage, voltage_min);
         voltage = Math.min(voltage, voltage_max);
         System.out.println("Predicted Voltage: " + predictedVoltage + "Test Voltage" + voltage);
-        assert(voltage == predictedVoltage);
+        assert (voltage == predictedVoltage);
     }
 
     @Test
@@ -50,7 +49,7 @@ public class PredictiveCurrentLimitingTest {
         voltage = Math.max(voltage, voltage_min);
         voltage = Math.min(voltage, voltage_max);
         System.out.println("Predicted Voltage: " + predictedVoltage + "Test Voltage" + voltage);
-        assert(voltage == predictedVoltage);
+        assert (voltage == predictedVoltage);
     }
 
     @Test
@@ -62,7 +61,7 @@ public class PredictiveCurrentLimitingTest {
         voltage = Math.max(voltage, voltage_min);
         voltage = Math.min(voltage, voltage_max);
         System.out.println("Predicted Voltage: " + predictedVoltage + "Test Voltage" + voltage);
-        assert(voltage < predictedVoltage);
+        assert (voltage < predictedVoltage);
     }
     @Test
     public void getVoltageGearRatioLowRPMTest() {
@@ -74,14 +73,14 @@ public class PredictiveCurrentLimitingTest {
     @Test
     public void getVoltageMultipleMotorsTest() {
         Cim twoCims = new Cim(2);
-        PredictiveCurrentLimiting twoCimTest = new PredictiveCurrentLimiting(-30, 30,1, twoCims);
+        PredictiveCurrentLimiting twoCimTest = new PredictiveCurrentLimiting(-30, 30, 1, twoCims);
         getVoltageTest(twoCimTest, cim, 12, 12, 0, 0, condition.EQUAL);
     }
 
     @Test
     public void getVoltageMultipleMotorsHighRPMTest() {
         Cim twoCims = new Cim(2);
-        PredictiveCurrentLimiting twoCimTest = new PredictiveCurrentLimiting(-30, 30,1, twoCims);
+        PredictiveCurrentLimiting twoCimTest = new PredictiveCurrentLimiting(-30, 30, 1, twoCims);
         getVoltageTest(twoCimTest, cim, 12, 12, 5330, 5330, condition.EQUAL);
     }
 
@@ -92,11 +91,12 @@ public class PredictiveCurrentLimitingTest {
         PredictiveCurrentLimiting predictiveCurrentLimiting = new PredictiveCurrentLimiting(-24, 24, 147, miniCim);
         double predictedVoltage = predictiveCurrentLimiting.getVoltage(voltage, 0);
         System.out.println("Predicted Voltage " + predictedVoltage + " Test Voltage: " + voltage);
-        assert(voltage == predictedVoltage);
+        assert (voltage == predictedVoltage);
     }
 
     @Test
-    private void getVoltageTest(PredictiveCurrentLimiting testLimiting, Motor testMotor, double predictedVoltage, double testVoltage, double testRPM, double predictedRPM, condition condition) {
+    private void getVoltageTest(PredictiveCurrentLimiting testLimiting, Motor testMotor, double predictedVoltage, double testVoltage,
+                                double testRPM, double predictedRPM, condition condition) {
         predictedVoltage = testLimiting.getVoltage(predictedVoltage, predictedRPM);
         double voltage_max = 30 * testMotor.getR() + testMotor.getKW() * testRPM;
         double voltage_min = -30 * testMotor.getR() + testMotor.getKW() * testRPM;
@@ -104,15 +104,15 @@ public class PredictiveCurrentLimitingTest {
         testVoltage = Math.min(testVoltage, voltage_max);
         System.out.println("Predicted Voltage: " + predictedVoltage + " Test Voltage: " + testVoltage);
         switch (condition) {
-            case EQUAL:
-                assert(predictedVoltage == testVoltage);
-                break;
-            case LESS:
-                assert(predictedVoltage < testVoltage);
-                break;
-            case GREATER:
-                assert (predictedVoltage > testVoltage);
-                break;
+        case EQUAL:
+            assert (predictedVoltage == testVoltage);
+            break;
+        case LESS:
+            assert (predictedVoltage < testVoltage);
+            break;
+        case GREATER:
+            assert (predictedVoltage > testVoltage);
+            break;
         }
     }
 }

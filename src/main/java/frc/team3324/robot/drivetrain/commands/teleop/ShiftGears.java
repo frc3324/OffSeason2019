@@ -16,10 +16,7 @@ public class ShiftGears extends Command {
      */
     public ShiftGears() { super("ShiftGears"); }
 
-    protected void execute() {
-        Robot.driveTrain.shiftGears();
-    }
+    protected void execute() { Robot.driveTrain.shiftGears(); }
 
     protected boolean isFinished() { return true; }
-
 }

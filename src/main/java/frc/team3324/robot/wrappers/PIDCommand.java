@@ -61,6 +61,7 @@ public class PIDCommand extends Command {
 
     @Override
     protected void interrupted() {
+        stopNotifier();
         end();
     }
 

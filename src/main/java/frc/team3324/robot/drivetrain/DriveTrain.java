@@ -57,7 +57,7 @@ public class DriveTrain extends Subsystem { // Identify Drivetrain as a subsyste
     private NetworkTableEntry gyroYaw = sensorTab.add("Gyro Yaw", 0).withPosition(0, 2).getEntry();
 
     private DoubleSolenoid gearShifter =
-        new DoubleSolenoid(Constants.DriveTrain.DRIVETRAIN_PCM_MODULE, Constants.DriveTrain.DRIVETRAIN_PORT_FORWARD,
+        new DoubleSolenoid(Constants.DriveTrain.DRIVETRAIN_PORT_FORWARD,
                            Constants.DriveTrain.DRIVETRAIN_PORT_REVERSE);
 
     public Encoder lEncoder =

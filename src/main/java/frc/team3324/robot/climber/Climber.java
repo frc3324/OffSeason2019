@@ -23,9 +23,9 @@ public class Climber extends Subsystem {
     public Climber() {}
 
     private DoubleSolenoid frontClimber =
-        new DoubleSolenoid(Constants.Climber.CLIMBER_BACK_FORWARD, Constants.Climber.CLIMBER_BACK_BACKWARD);
+        new DoubleSolenoid(Constants.LED.LED_PCM_MODULE, Constants.Climber.CLIMBER_FRONT_FORWARD, Constants.Climber.CLIMBER_FRONT_BACKWARD);
     private DoubleSolenoid backClimber =
-        new DoubleSolenoid(Constants.Climber.CLIMBER_FRONT_FORWARD, Constants.Climber.CLIMBER_FRONT_BACKWARD);
+        new DoubleSolenoid(Constants.Climber.CLIMBER_BACK_FORWARD, Constants.Climber.CLIMBER_BACK_BACKWARD );
     /**
      * Sets the frontClimber double solenoid status to forward.
      */

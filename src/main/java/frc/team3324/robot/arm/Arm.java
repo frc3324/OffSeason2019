@@ -59,7 +59,7 @@ public class Arm extends Subsystem {
     }
 
     private void initializeCurrentLimiting() {
-        armMotorOne.configContinuousCurrentLimit(8, 0);
+        armMotorOne.configContinuousCurrentLimit(16, 0);
         armMotorOne.enableCurrentLimit(true);
         armMotorTwo.follow(armMotorOne);
         armMotorThree.follow(armMotorOne);
@@ -115,7 +115,6 @@ public class Arm extends Subsystem {
         }
         double feedforward = 0.06 * Math.cos(getArmRadians());
         speed = speed + feedforward;
-        speed = predictiveCurrentLimiting.getVoltage(speed * 12, gearRatio * getRPM());
         armMotorOne.set(speed);
 
         armSpeed.setDouble(speed);

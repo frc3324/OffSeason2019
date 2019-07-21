@@ -11,8 +11,8 @@ class Drive: Command() {
     }
 
     override fun execute() {
-        val xSpeed = OI.primaryController.getY(GenericHID.Hand.kLeft)
-        val ySpeed = OI.primaryController.getX(GenericHID.Hand.kRight)
+        val xSpeed = OI.primaryLeftY
+        val ySpeed = OI.primaryRightX
 
         DriveTrain.curvatureDrive(xSpeed, ySpeed)
     }

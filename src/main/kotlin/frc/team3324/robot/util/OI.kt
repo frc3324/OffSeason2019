@@ -1,9 +1,16 @@
 package frc.team3324.robot.util
 
+import edu.wpi.first.wpilibj.GenericHID
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.buttons.JoystickButton
+import frc.team3324.robot.arm.Arm
+import frc.team3324.robot.arm.commands.ResetArm
+import frc.team3324.robot.intake.hatch.commands.SwitchIntake
 
 object OI {
+    val oneEightyDegree = PIDCommand(0.5, 0.0, 0.0, Math.toRadians(180.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
+    val zeroDegree = PIDCommand(0.5, 0.0, 0.0, Math.toRadians(0.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
+
     private val BUTTON_A = 1
     private val BUTTON_B = 2
     private val BUTTON_X = 3
@@ -35,6 +42,24 @@ object OI {
     private val SECONDARY_START_BUTTON = JoystickButton(secondaryController, BUTTON_START)
     private val SECONDARY_LEFT_JOYSTICK_BUTTON = JoystickButton(secondaryController, JOYSTICK_LEFT_CLICK)
     private val SECONDARY_RIGHT_JOYSTICK_BUTTON = JoystickButton(secondaryController, JOYSTICK_RIGHT_CLICK)
+    private val SECONDARY_RIGHT_BUMPER = JoystickButton(secondaryController, RIGHT_BUMPER)
+    private val SECONDARY_LEFT_BUMPER = JoystickButton(secondaryController, LEFT_BUMPER)
+
+
+    val secondaryLeftY get() = secondaryController.getY(GenericHID.Hand.kLeft)
+    val secondaryRightY get() = secondaryController.getY(GenericHID.Hand.kRight)
+
+    val primaryLeftY get() = primaryController.getY(GenericHID.Hand.kLeft)
+    val primaryRightX get() = primaryController.getX(GenericHID.Hand.kRight)
+
+    init {
+        PRIMARY_RIGHT_BUMPER.whenPressed(SwitchIntake())
+
+        SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
+        SECONDARY_LEFT_BUMPER.whenPressed(oneEightyDegree)
+        SECONDARY_A_BUTTON.whenPressed(PIDCommand(0.5, 0.0, 0.0, Math.toRadians(90.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed))
+        SECONDARY_START_BUTTON.whenPressed(ResetArm())
+    }
 
 
 }

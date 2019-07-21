@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem
 import java.util.function.DoubleConsumer
 import java.util.function.DoubleSupplier
 
-class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Double, val dt: Double, val subsystem: Subsystem, val measurement: DoubleSupplier, val useOutput: DoubleConsumer): Command() {
+class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Double, val dt: Double, val subsystem: Subsystem, val measurement: () -> Double, val useOutput: (Double) -> Unit): Command() {
     protected var integral = 0.0
     protected var lastPosition = 0.0
     private val notifier = Notifier(this ::executePID)
@@ -21,7 +21,7 @@ class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Doubl
     }
 
     fun executePID() {
-        val position = measurement.asDouble
+        val position = measurement()
         val error = goal - position
         val deriv = position - lastPosition
 
@@ -29,7 +29,7 @@ class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Doubl
         lastPosition = position
 
         val output = (error * kP) + (integral * kI) - (deriv * kD)
-        useOutput.accept(output)
+        useOutput(output)
     }
 
     override fun end() {
@@ -47,7 +47,7 @@ class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Doubl
     }
 
     override fun isFinished(): Boolean {
-        return measurement.asDouble == goal
+        return measurement() == goal
     }
 
 }

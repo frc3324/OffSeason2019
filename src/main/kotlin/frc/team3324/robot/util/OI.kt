@@ -56,7 +56,7 @@ object OI {
         PRIMARY_RIGHT_BUMPER.whenPressed(SwitchIntake())
 
         SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
-        SECONDARY_LEFT_BUMPER.whenPressed(oneEightyDegree)
+        SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)
         SECONDARY_A_BUTTON.whenPressed(PIDCommand(0.5, 0.0, 0.0, Math.toRadians(90.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed))
         SECONDARY_START_BUTTON.whenPressed(ResetArm())
     }

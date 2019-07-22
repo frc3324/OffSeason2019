@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Encoder
 import edu.wpi.first.wpilibj.SPI
 import edu.wpi.first.wpilibj.command.Subsystem
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team3324.robot.drivetrain.commands.teleop.Drive
 
 import frc.team3324.robot.util.Consts
@@ -30,7 +31,7 @@ object DriveTrain: Subsystem() {
     private val frMotor = WPI_TalonSRX(Consts.DriveTrain.BL_MOTOR)
     private val brMotor = WPI_VictorSPX(Consts.DriveTrain.BR_MOTOR)
 
-    private val drive = DifferentialDrive(frMotor, blMotor);
+    private val drive = DifferentialDrive(frMotor, blMotor)
 
     init {
         frMotor.configPeakCurrentLimit(200)
@@ -44,11 +45,11 @@ object DriveTrain: Subsystem() {
         frMotor.enableCurrentLimit(true)
         blMotor.enableCurrentLimit(true)
 
-        brMotor.follow(frMotor)
-        flMotor.follow(blMotor)
+       // brMotor.follow(frMotor)
+       // flMotor.follow(blMotor)
 
-        flMotor.inverted = false
-        frMotor.inverted= false
+        brMotor.inverted = false
+        frMotor.inverted= true
         
         blMotor.inverted = false
         flMotor.inverted = false
@@ -87,6 +88,9 @@ object DriveTrain: Subsystem() {
     }
 
     fun curvatureDrive(xSpeed: Double, ySpeed: Double) {
+        SmartDashboard.putNumber("Current Of FLMotor ", blMotor.outputCurrent)
+        SmartDashboard.putNumber("Current Of FRMotor ", frMotor.outputCurrent)
+
         if (xSpeed < 0.05) {
             drive.curvatureDrive(xSpeed, ySpeed, true)
         } else {

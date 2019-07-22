@@ -5,10 +5,10 @@ object Consts {
         val DRIVETRAIN_PCM_MODULE = 0
 
         // Motor ports
-        val FL_MOTOR = 7 // Talon
-        val BL_MOTOR = 6 // Victor
-        val FR_MOTOR = 0 // Victor
-        val BR_MOTOR = 1 // Talo
+        val FL_MOTOR = 7 // Victor
+        val BL_MOTOR = 6 // Talon
+        val FR_MOTOR = 0 // Talon
+        val BR_MOTOR = 1 // Victor
 
         val LEFT_ENCODER_PORT_A = 0
         val LEFT_ENCODER_PORT_B = 1

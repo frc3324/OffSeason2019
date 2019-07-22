@@ -28,7 +28,7 @@ object DriveTrain: Subsystem() {
     private val flMotor = WPI_VictorSPX(Consts.DriveTrain.FL_MOTOR)
     private val blMotor = WPI_TalonSRX(Consts.DriveTrain.BL_MOTOR)
 
-    private val frMotor = WPI_TalonSRX(Consts.DriveTrain.BL_MOTOR)
+    private val frMotor = WPI_TalonSRX(Consts.DriveTrain.FR_MOTOR)
     private val brMotor = WPI_VictorSPX(Consts.DriveTrain.BR_MOTOR)
 
     private val drive = DifferentialDrive(frMotor, blMotor)
@@ -45,14 +45,14 @@ object DriveTrain: Subsystem() {
         frMotor.enableCurrentLimit(true)
         blMotor.enableCurrentLimit(true)
 
-       // brMotor.follow(frMotor)
-       // flMotor.follow(blMotor)
+        brMotor.follow(frMotor)
+        flMotor.follow(blMotor)
 
-        brMotor.inverted = false
+        brMotor.inverted = true
         frMotor.inverted= true
         
-        blMotor.inverted = false
-        flMotor.inverted = false
+        blMotor.inverted = true
+        flMotor.inverted = true
 
         lEncoder.distancePerPulse = Consts.DriveTrain.DISTANCE_PER_PULSE
         rEncoder.distancePerPulse = Consts.DriveTrain.DISTANCE_PER_PULSE

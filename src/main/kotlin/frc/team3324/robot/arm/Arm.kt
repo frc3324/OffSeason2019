@@ -13,11 +13,11 @@ import frc.team3324.robot.util.Consts
 
 object Arm: Subsystem() {
     private val encoder = Encoder(Consts.Arm.ENCODER_PORT_A, Consts.Arm.ENCODER_PORT_B, true, CounterBase.EncodingType.k4X)
-    val frontSwitch = DigitalInput(Consts.Arm.FRONT_LIMIT_SWITCH)
+    private val frontSwitch = DigitalInput(Consts.Arm.FRONT_LIMIT_SWITCH)
     private val backSwitch = DigitalInput(Consts.Arm.BACK_LIMIT_SWITCH)
 
     val frontSwitchStatus get() = frontSwitch.get()
-    val backSwitchStatus get() = frontSwitch.get()
+    val backSwitchStatus get() = backSwitch.get()
 
     private val armMotorOne = WPI_TalonSRX(Consts.Arm.MOTOR_PORT_ARM_ONE)
     private val armMotorTwo = WPI_VictorSPX(Consts.Arm.MOTOR_PORT_ARM_TWO)
@@ -29,7 +29,7 @@ object Arm: Subsystem() {
     }
 
     private fun initializeCurrentLimiting() {
-        armMotorOne.configContinuousCurrentLimit(16)
+        armMotorOne.configContinuousCurrentLimit(12)
         armMotorOne.enableCurrentLimit(true)
 
         armMotorTwo.follow(armMotorOne)
@@ -67,7 +67,7 @@ object Arm: Subsystem() {
         return encoder.get() * ((Math.PI * 2) / Consts.Arm.ENCODER_TICKS_PER_REV)
     }
 
-    fun resetEncoder() {
+    private fun resetEncoder() {
         encoder.reset()
     }
 

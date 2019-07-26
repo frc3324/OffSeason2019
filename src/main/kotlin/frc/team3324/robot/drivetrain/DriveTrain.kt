@@ -21,7 +21,12 @@ object DriveTrain: Subsystem() {
     private val lEncoder = Encoder(Consts.DriveTrain.LEFT_ENCODER_PORT_A, Consts.DriveTrain.LEFT_ENCODER_PORT_B, false, CounterBase.EncodingType.k4X)
     private val rEncoder = Encoder(Consts.DriveTrain.RIGHT_ENCODER_PORT_A, Consts.DriveTrain.RIGHT_ENCODER_PORT_B, false, CounterBase.EncodingType.k4X)
 
-    private val gearShifter = DoubleSolenoid(Consts.DriveTrain.DRIVETRAIN_PCM_MODULE, Consts.DriveTrain.GEARSHIFTER_FORWARD, Consts.DriveTrain.GEARSHIFTER_REVERSE)
+    val gearShifter = DoubleSolenoid(Consts.DriveTrain.DRIVETRAIN_PCM_MODULE, Consts.DriveTrain.GEARSHIFTER_FORWARD, Consts.DriveTrain.GEARSHIFTER_REVERSE)
+    var shifterStatus: DoubleSolenoid.Value
+        get() = gearShifter.get()
+        set(status) {
+            gearShifter.set(status)
+        }
 
     private val gyro = AHRS(SPI.Port.kMXP)
 
@@ -56,6 +61,8 @@ object DriveTrain: Subsystem() {
 
         lEncoder.distancePerPulse = Consts.DriveTrain.DISTANCE_PER_PULSE
         rEncoder.distancePerPulse = Consts.DriveTrain.DISTANCE_PER_PULSE
+
+        setBrakeMode()
     }
 
     fun resetEncoders() {
@@ -95,14 +102,6 @@ object DriveTrain: Subsystem() {
             drive.curvatureDrive(xSpeed, ySpeed, true)
         } else {
             drive.curvatureDrive(xSpeed, ySpeed, false)
-        }
-    }
-
-    fun shiftGears() {
-        if (gearShifter.get() == DoubleSolenoid.Value.kForward) {
-            gearShifter.set(DoubleSolenoid.Value.kReverse)
-        } else {
-            gearShifter.set(DoubleSolenoid.Value.kForward)
         }
     }
 

@@ -6,9 +6,9 @@ import frc.team3324.robot.util.Consts
 
 object Hatch: Subsystem() {
 
-    private val hatchIntake = DoubleSolenoid(Consts.HatchIntake.HATCH_INTAKE_PORT_FORWARD, Consts.HatchIntake.HATCH_INTAKE_PORT_BACKWARD)
+    val hatchIntake = DoubleSolenoid(Consts.HatchIntake.HATCH_INTAKE_PORT_FORWARD, Consts.HatchIntake.HATCH_INTAKE_PORT_BACKWARD)
 
-    var intakeStatus
+    var intakeStatus: DoubleSolenoid.Value
         get() = hatchIntake.get()
         set(status) {
            hatchIntake.set(status)

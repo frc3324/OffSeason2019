@@ -99,9 +99,9 @@ object DriveTrain: Subsystem() {
         SmartDashboard.putNumber("Current Of FRMotor ", frMotor.outputCurrent)
 
         if (xSpeed < 0.05) {
-            drive.curvatureDrive(xSpeed, ySpeed, true)
+            drive.curvatureDrive(xSpeed, ySpeed*0.6, true)
         } else {
-            drive.curvatureDrive(xSpeed, ySpeed, false)
+            drive.curvatureDrive(xSpeed, ySpeed*0.7, false)
         }
     }
 

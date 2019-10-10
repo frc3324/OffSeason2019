@@ -28,6 +28,10 @@ object DriveTrain: Subsystem() {
             gearShifter.set(status)
         }
 
+    var lastDistance = 0.0
+    var speed = 0.0
+
+
     private val gyro = AHRS(SPI.Port.kMXP)
 
     private val flMotor = WPI_VictorSPX(Consts.DriveTrain.FL_MOTOR)
@@ -39,12 +43,12 @@ object DriveTrain: Subsystem() {
     private val drive = DifferentialDrive(frMotor, blMotor)
 
     init {
-        frMotor.configPeakCurrentLimit(200)
-        frMotor.configPeakCurrentDuration(200)
+        frMotor.configPeakCurrentLimit(100)
+        frMotor.configPeakCurrentDuration(50)
         frMotor.configContinuousCurrentLimit(40)
 
-        blMotor.configPeakCurrentLimit(200)
-        blMotor.configPeakCurrentDuration(200)
+            blMotor.configPeakCurrentLimit(100)
+        blMotor.configPeakCurrentDuration(50)
         blMotor.configContinuousCurrentLimit(40)
 
         frMotor.enableCurrentLimit(true)
@@ -79,7 +83,7 @@ object DriveTrain: Subsystem() {
     }
 
     fun getAverageDistance(): Double {
-        return (lEncoder.distance + rEncoder.distance) / 0.0
+        return (lEncoder.distance + rEncoder.distance) / 2.0
     }
 
     fun resetGyro() {
@@ -99,9 +103,9 @@ object DriveTrain: Subsystem() {
         SmartDashboard.putNumber("Current Of FRMotor ", frMotor.outputCurrent)
 
         if (xSpeed < 0.05) {
-            drive.curvatureDrive(xSpeed, ySpeed*0.6, true)
+            drive.curvatureDrive(xSpeed, ySpeed * 0.61, true)
         } else {
-            drive.curvatureDrive(xSpeed, ySpeed*0.7, false)
+            drive.curvatureDrive(xSpeed, ySpeed * 0.7, false)
         }
     }
 

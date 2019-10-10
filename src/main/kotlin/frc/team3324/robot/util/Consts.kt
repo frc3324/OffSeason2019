@@ -1,5 +1,7 @@
 package frc.team3324.robot.util
 
+import edu.wpi.first.wpilibj.DoubleSolenoid
+
 object Consts {
     object DriveTrain {
         const val DRIVETRAIN_PCM_MODULE = 0
@@ -30,6 +32,10 @@ object Consts {
 
         const val GEARSHIFTER_FORWARD = 0
         const val GEARSHIFTER_REVERSE = 1
+
+        val HIGH_GEAR = DoubleSolenoid.Value.kReverse
+        val LOW_GEAR = DoubleSolenoid.Value.kForward
+
     }
 
     object Arm {

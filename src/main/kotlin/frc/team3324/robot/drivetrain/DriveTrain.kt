@@ -19,7 +19,7 @@ import frc.team3324.robot.util.Consts
 object DriveTrain: Subsystem() {
 
     private val lEncoder = Encoder(Consts.DriveTrain.LEFT_ENCODER_PORT_A, Consts.DriveTrain.LEFT_ENCODER_PORT_B, false, CounterBase.EncodingType.k4X)
-    private val rEncoder = Encoder(Consts.DriveTrain.RIGHT_ENCODER_PORT_A, Consts.DriveTrain.RIGHT_ENCODER_PORT_B, false, CounterBase.EncodingType.k4X)
+    private val rEncoder = Encoder(Consts.DriveTrain.RIGHT_ENCODER_PORT_A, Consts.DriveTrain.RIGHT_ENCODER_PORT_B, true, CounterBase.EncodingType.k4X)
 
     val gearShifter = DoubleSolenoid(Consts.DriveTrain.DRIVETRAIN_PCM_MODULE, Consts.DriveTrain.GEARSHIFTER_FORWARD, Consts.DriveTrain.GEARSHIFTER_REVERSE)
     var shifterStatus: DoubleSolenoid.Value
@@ -27,9 +27,15 @@ object DriveTrain: Subsystem() {
         set(status) {
             gearShifter.set(status)
         }
+    val accelerationGyro: Double
+        get() = gyro.accelFullScaleRangeG.toDouble() * 9.8
+    val leftEncoderSpeed: Double
+        get() = lEncoder.rate
+    val rightEncoderSpeed: Double
+        get() = rEncoder.rate
 
-    var lastDistance = 0.0
     var speed = 0.0
+    var acceleration = 0.0
 
 
     private val gyro = AHRS(SPI.Port.kMXP)
@@ -47,7 +53,7 @@ object DriveTrain: Subsystem() {
         frMotor.configPeakCurrentDuration(50)
         frMotor.configContinuousCurrentLimit(40)
 
-            blMotor.configPeakCurrentLimit(100)
+        blMotor.configPeakCurrentLimit(100)
         blMotor.configPeakCurrentDuration(50)
         blMotor.configContinuousCurrentLimit(40)
 
@@ -126,6 +132,6 @@ object DriveTrain: Subsystem() {
     }
 
     override fun initDefaultCommand() {
-        defaultCommand = Drive()
+        defaultCommand = Drive
     }
 }

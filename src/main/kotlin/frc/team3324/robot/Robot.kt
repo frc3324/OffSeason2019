@@ -19,7 +19,7 @@ class Robot : TimedRobot() {
     private val compressor = Compressor(1)
 
     override fun robotInit() {
-        LiveWindow.setEnabled(false)
+        LiveWindow.disableAllTelemetry()
 
         compressor.start()
 

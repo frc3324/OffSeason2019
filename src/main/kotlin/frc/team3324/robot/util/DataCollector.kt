@@ -20,7 +20,7 @@ object DataCollector: Command() {
 
     override fun initialize() {
         DriveTrain.shifterStatus = Consts.DriveTrain.LOW_GEAR
-        notifier.startPeriodic(0.4)
+        notifier.startPeriodic(0.15)
     }
     private fun run() {
         var timeDifference = Timer.getFPGATimestamp() - lastTime
@@ -29,7 +29,7 @@ object DataCollector: Command() {
         lastTime = Timer.getFPGATimestamp()
 
         if (timeDifference > 0.5) {
-            timeDifference = 0.4
+            timeDifference = 0.2
         }
 
         DriveTrain.speed = Math.abs((DriveTrain.leftEncoderSpeed + DriveTrain.rightEncoderSpeed) / 2)

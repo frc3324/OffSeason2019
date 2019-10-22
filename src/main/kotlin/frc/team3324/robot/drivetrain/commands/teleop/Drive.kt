@@ -4,7 +4,8 @@ import edu.wpi.first.wpilibj.command.Command
 import frc.team3324.robot.drivetrain.DriveTrain
 import frc.team3324.robot.util.OI
 
-class Drive: Command() {
+object Drive: Command() {
+
     init {
         requires(DriveTrain)
     }

@@ -5,20 +5,26 @@ import edu.wpi.first.wpilibj.Compressor
 import edu.wpi.first.wpilibj.PowerDistributionPanel
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
+import edu.wpi.first.wpilibj.livewindow.LiveWindow
 import frc.team3324.robot.arm.Arm
 
 import frc.team3324.robot.drivetrain.DriveTrain
+import frc.team3324.robot.drivetrain.commands.teleop.Drive
 import frc.team3324.robot.intake.cargo.Cargo
 import frc.team3324.robot.intake.hatch.Hatch
-    import frc.team3324.robot.util.LED
-import frc.team3324.robot.util.OI
+import frc.team3324.robot.util.*
 
 class Robot : TimedRobot() {
+    private val pdp = PowerDistributionPanel()
     private val compressor = Compressor(1)
 
     override fun robotInit() {
+        LiveWindow.disableAllTelemetry()
+
         compressor.start()
 
+        Camera
+        Drive
         DriveTrain
         OI
         Arm
@@ -35,12 +41,18 @@ class Robot : TimedRobot() {
         CameraServer.getInstance().startAutomaticCapture(0)
 
         CameraServer.getInstance().putVideo("Camera output", 240, 144)
-
     }
 
     override fun robotPeriodic() {
-        CameraServer.getInstance().video
         Scheduler.getInstance().run()
+    }
+
+    override fun autonomousInit() {
+        Scheduler.getInstance().add(Camera)
+        DriveTrain.shifterStatus = Consts.DriveTrain.HIGH_GEAR
+    }
+    override fun teleopInit() {
+        Scheduler.getInstance().add(DataCollector)
     }
 
     override fun teleopPeriodic() {

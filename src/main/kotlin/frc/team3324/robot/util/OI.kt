@@ -63,8 +63,8 @@ object OI {
         PRIMARY_RIGHT_BUMPER.whenPressed(PneumaticShift(Hatch.hatchIntake))
         PRIMARY_LEFT_BUMPER.whenPressed(PneumaticShift(DriveTrain.gearShifter))
 
-        PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
-        PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
+        PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
+        PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
 
         SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
         SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)

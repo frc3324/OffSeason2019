@@ -3,6 +3,8 @@ package frc.team3324.robot.util
 import edu.wpi.first.wpilibj.GenericHID
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.buttons.JoystickButton
+import frc.team3324.lib.commands.MotorCommand
+import frc.team3324.robot.Robot
 import frc.team3324.robot.arm.Arm
 import frc.team3324.robot.arm.commands.ResetArm
 import frc.team3324.robot.arm.commands.StopArm
@@ -72,7 +74,7 @@ object OI {
         SECONDARY_B_BUTTON.whenPressed(StopArm())
         SECONDARY_START_BUTTON.whenPressed(ResetArm())
 
-        SECONDARY_X_BUTTON.whileHeld(Intake())
+        SECONDARY_X_BUTTON.whileHeld(MotorCommand(Robot.cargo, 1.0))
         SECONDARY_Y_BUTTON.whileHeld(Outtake())
     }
 

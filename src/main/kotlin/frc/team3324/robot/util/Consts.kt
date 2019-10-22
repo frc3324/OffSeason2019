@@ -1,5 +1,7 @@
 package frc.team3324.robot.util
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
+
 object Consts {
     object DriveTrain {
         const val DRIVETRAIN_PCM_MODULE = 0
@@ -52,7 +54,7 @@ object Consts {
     }
 
     object CargoIntake {
-        const val CARGO_INTAKE_MOTOR = 4
+        val motor = WPI_TalonSRX(4)
     }
 
     object Climber {

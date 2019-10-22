@@ -4,12 +4,14 @@ import edu.wpi.first.cameraserver.CameraServer
 import edu.wpi.first.wpilibj.Compressor
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
+import frc.team3324.lib.commands.MotorCommand
+import frc.team3324.lib.subsystems.MotorSubsystem
 import frc.team3324.robot.arm.Arm
 
 import frc.team3324.robot.drivetrain.DriveTrain
-import frc.team3324.robot.intake.cargo.Cargo
 import frc.team3324.robot.intake.hatch.Hatch
-    import frc.team3324.robot.util.LED
+import frc.team3324.robot.util.Consts
+import frc.team3324.robot.util.LED
 import frc.team3324.robot.util.OI
 
 class Robot : TimedRobot() {
@@ -22,7 +24,7 @@ class Robot : TimedRobot() {
         OI
         Arm
         Hatch
-        Cargo
+        val cargo = MotorSubsystem(Consts.CargoIntake.motor, 5, MotorCommand(0.06))
         LED
 
         LED.redStatus = true

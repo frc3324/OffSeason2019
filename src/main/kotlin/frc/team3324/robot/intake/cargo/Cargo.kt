@@ -1,13 +1,12 @@
 package frc.team3324.robot.intake.cargo
 
 import com.ctre.phoenix.motorcontrol.NeutralMode
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import edu.wpi.first.wpilibj.command.Subsystem
 import frc.team3324.robot.intake.cargo.commands.Feedforward
 import frc.team3324.robot.util.Consts
 
 object Cargo: Subsystem() {
-    private val motor = WPI_TalonSRX(Consts.CargoIntake.CARGO_INTAKE_MOTOR)
+    private val motor = Consts.CargoIntake.motor
 
     init {
         motor.setNeutralMode(NeutralMode.Brake)

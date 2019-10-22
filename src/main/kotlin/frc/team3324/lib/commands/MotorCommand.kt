@@ -1,15 +1,13 @@
-package frc.team3324.robot.intake.cargo.commands
+package frc.team3324.lib.commands
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX
 import edu.wpi.first.wpilibj.command.Command
 import frc.team3324.lib.subsystems.MotorSubsystem
 
-class Outtake(val subsystem: MotorSubsystem): Command() {
-    init {
-        requires(subsystem)
-    }
+class MotorCommand(val subsystem: MotorSubsystem, val speed: Double): Command() {
 
     override fun execute() {
-        subsystem.speed = -1.0
+        subsystem.speed = speed
     }
 
     override fun isFinished(): Boolean {

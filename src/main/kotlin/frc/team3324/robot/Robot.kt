@@ -24,7 +24,7 @@ class Robot : TimedRobot() {
         OI
         Arm
         Hatch
-        val cargo = MotorSubsystem(Consts.CargoIntake.motor, 5, MotorCommand(0.06))
+        val cargo = MotorSubsystem(Consts.CargoIntake.motor, 5, 0.06)
         LED
 
         LED.redStatus = true

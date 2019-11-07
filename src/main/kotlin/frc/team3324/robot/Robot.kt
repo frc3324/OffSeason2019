@@ -16,6 +16,9 @@ import frc.team3324.robot.util.OI
 
 class Robot : TimedRobot() {
     private val compressor = Compressor(1)
+    companion object {
+        var cargo = MotorSubsystem(Consts.CargoIntake.motor, 5, 0.06)
+    }
 
     override fun robotInit() {
         compressor.start()
@@ -24,7 +27,6 @@ class Robot : TimedRobot() {
         OI
         Arm
         Hatch
-        val cargo = MotorSubsystem(Consts.CargoIntake.motor, 5, 0.06)
         LED
 
         LED.redStatus = true

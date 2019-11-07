@@ -75,7 +75,7 @@ object OI {
         SECONDARY_START_BUTTON.whenPressed(ResetArm())
 
         SECONDARY_X_BUTTON.whileHeld(MotorCommand(Robot.cargo, 1.0))
-        SECONDARY_Y_BUTTON.whileHeld(Outtake())
+        SECONDARY_Y_BUTTON.whileHeld(MotorCommand(Robot.cargo, -1.0))
     }
 
 

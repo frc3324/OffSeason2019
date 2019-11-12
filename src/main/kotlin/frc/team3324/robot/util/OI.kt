@@ -68,7 +68,7 @@ object OI {
 
         SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
         SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)
-        SECONDARY_A_BUTTON.whenPressed(PIDCommand(0.55, 0.001, 0.0, Math.toRadians(90.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed))
+        SECONDARY_A_BUTTON.whenPressed(PIDCommand(0.65, 0.001, 0.0, Math.toRadians(90.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed))
         SECONDARY_B_BUTTON.whenPressed(StopArm())
         SECONDARY_START_BUTTON.whenPressed(ResetArm())
 

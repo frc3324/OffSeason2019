@@ -15,8 +15,11 @@ import frc.team3324.robot.intake.hatch.Hatch
 import frc.team3324.robot.util.*
 
 class Robot : TimedRobot() {
-    private val pdp = PowerDistributionPanel()
     private val compressor = Compressor(1)
+
+    companion object {
+        val pdp = PowerDistributionPanel()
+    }
 
     override fun robotInit() {
         LiveWindow.disableAllTelemetry()

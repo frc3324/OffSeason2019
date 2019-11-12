@@ -47,6 +47,7 @@ object Consts {
         const val ENCODER_PORT_B = 6
 
         const val ENCODER_TICKS_PER_REV = 256
+        const val DISTANCE_PER_PULSE = Math.PI / (ENCODER_TICKS_PER_REV / 2)
 
         const val FRONT_LIMIT_SWITCH = 9
         const val BACK_LIMIT_SWITCH = 8

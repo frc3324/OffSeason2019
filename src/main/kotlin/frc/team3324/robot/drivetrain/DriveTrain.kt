@@ -109,10 +109,11 @@ object DriveTrain: Subsystem() {
         SmartDashboard.putNumber("Current Of FRMotor ", frMotor.outputCurrent)
 
         if (xSpeed < 0.05) {
-            drive.curvatureDrive(xSpeed, ySpeed * 0.61, true)
+            drive.curvatureDrive(xSpeed, ySpeed * 0.65, true)
         } else {
             drive.curvatureDrive(xSpeed, ySpeed * 0.7, false)
         }
+
     }
 
     fun setBrakeMode() {

@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.command.Command
 import frc.team3324.robot.arm.Arm
 
 class ResetArm: Command() {
+    init {
+        requires(Arm)
+    }
 
     override fun execute() {
         Arm.setArmRawSpeed(-0.5)

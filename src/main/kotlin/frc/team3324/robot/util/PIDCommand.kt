@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Notifier
 import edu.wpi.first.wpilibj.command.Command
 import edu.wpi.first.wpilibj.command.Subsystem
 
-class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Double, val dt: Double, val subsystem: Subsystem, val measurement: () -> Double, val useOutput: (Double) -> Unit): Command() {
+class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Double, val dt: Double, subsystem: Subsystem, val measurement: () -> Double, val useOutput: (Double) -> Unit): Command() {
     private var integral = 0.0
     private var lastPosition = 0.0
     private val notifier = Notifier(this ::executePID)
@@ -45,7 +45,7 @@ class PIDCommand(val kP: Double, val kI: Double, val kD: Double, val goal: Doubl
     }
 
     override fun isFinished(): Boolean {
-        return measurement() == goal
+        return false
     }
 
 }

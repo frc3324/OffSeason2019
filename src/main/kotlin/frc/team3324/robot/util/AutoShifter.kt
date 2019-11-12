@@ -15,6 +15,7 @@ object DataCollector: Command() {
     var lastPosition = 0.0
     var lastSpeed = 0.0
     var lastShift = 0.0
+    var enabled = true
 
     private val notifier = Notifier(::run)
 
@@ -36,7 +37,7 @@ object DataCollector: Command() {
         SmartDashboard.putNumber("Speed", DriveTrain.speed)
         val shifterStatus = DriveTrain.shifterStatus
 
-        if (sign(DriveTrain.getLeftEncoderDistance()) * sign(DriveTrain.getRightEncoderDistance()) != -1.0) {
+        if (sign(DriveTrain.getLeftEncoderDistance()) * sign(DriveTrain.getRightEncoderDistance()) != -1.0 && enabled) {
             if (shifterStatus == Consts.DriveTrain.LOW_GEAR && DriveTrain.speed > (Consts.DriveTrain.LOW_GEAR_MAX_VELOCITY * 0.7 ) && timeBetweenShifts > 0.5) {
                 DriveTrain.shifterStatus = Consts.DriveTrain.HIGH_GEAR
                 lastShift = Timer.getFPGATimestamp()

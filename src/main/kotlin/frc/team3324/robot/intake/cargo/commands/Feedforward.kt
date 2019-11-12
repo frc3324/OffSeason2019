@@ -9,7 +9,7 @@ class Feedforward: Command() {
     }
 
     override fun execute() {
-        Cargo.speed = 0.06
+        Cargo.speed = 0.0
     }
 
     override fun isFinished(): Boolean {

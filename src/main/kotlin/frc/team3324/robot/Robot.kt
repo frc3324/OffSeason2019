@@ -24,6 +24,14 @@ class Robot : TimedRobot() {
         val pdp = PowerDistributionPanel()
     }
 
+    class monka: Thread() {
+
+        override fun run() {
+            SmartDashboard.putBoolean("Thread Priority", Threads.setCurrentThreadPriority(true, 40))
+            sleep(10000)
+        }
+    }
+
     override fun robotInit() {
         LiveWindow.disableAllTelemetry()
 
@@ -47,8 +55,6 @@ class Robot : TimedRobot() {
         CameraServer.getInstance().startAutomaticCapture(0)
 
         CameraServer.getInstance().putVideo("Camera output", 240, 144)
-        Threads.setCurrentThreadPriority(true, 40)
-        Thread.sleep(10000)
     }
 
     fun enabledInit() {
@@ -57,6 +63,7 @@ class Robot : TimedRobot() {
     }
 
     override fun robotPeriodic() {
+        monka().start()
         Scheduler.getInstance().run()
     }
 

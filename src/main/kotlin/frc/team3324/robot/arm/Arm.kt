@@ -14,6 +14,7 @@ import frc.team3324.robot.util.Motors
 import frc.team3324.robot.util.OI
 import frc.team3324.robot.util.PredictiveCurrentLimiting
 import frc.team3324.robot.Robot
+import frc.team3324.robot.drivetrain.DriveTrain
 
 object Arm: Subsystem() {
     private val encoder = Encoder(Consts.Arm.ENCODER_PORT_A, Consts.Arm.ENCODER_PORT_B, true, CounterBase.EncodingType.k4X)
@@ -27,6 +28,11 @@ object Arm: Subsystem() {
     private val armMotorOne = WPI_TalonSRX(Consts.Arm.MOTOR_PORT_ARM_ONE)
     private val armMotorTwo = WPI_VictorSPX(Consts.Arm.MOTOR_PORT_ARM_TWO)
     private val armMotorThree  = WPI_VictorSPX(Consts.Arm.MOTOR_PORT_ARM_THREE)
+
+    var acceleration = 0.0
+    val velocity: Double
+        get() = encoder.rate
+
 
     init {
         encoder.distancePerPulse = Consts.Arm.DISTANCE_PER_PULSE
@@ -59,7 +65,7 @@ object Arm: Subsystem() {
         speed += feedforward
         val pdpVoltage = Robot.pdp.voltage
         SmartDashboard.putNumber("Non-limited Voltage", speed * pdpVoltage)
-        val voltage = currentLimiter.limit(speed * pdpVoltage, encoder.rate)
+        val voltage = currentLimiter.limit(speed * pdpVoltage, acceleration)
         speed = voltage / pdpVoltage
         SmartDashboard.putNumber("Pdp voltage", Robot.pdp.voltage)
         SmartDashboard.putNumber("Arm current", armMotorOne.outputCurrent * 3)

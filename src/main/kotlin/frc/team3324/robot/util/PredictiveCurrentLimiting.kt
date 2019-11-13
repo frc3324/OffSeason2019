@@ -6,11 +6,11 @@ import kotlin.math.sign
 
 class PredictiveCurrentLimiting(val motor: Motors.Motor, val upperLimit: Double, val lowerLimit: Double) {
 
-    fun limit(voltage: Double, angularVelocity: Double): Double {
+    fun limit(voltage: Double, angularAcceleration: Double): Double {
         var voltage = voltage
 
-        val voltageMin = lowerLimit * motor.resistance + (angularVelocity / motor.Kv)
-        val voltageMax = upperLimit * motor.resistance + (angularVelocity / motor.Kv)
+        val voltageMin = lowerLimit * motor.resistance + angularAcceleration/motor.Kv
+        val voltageMax = upperLimit * motor.resistance + angularAcceleration/motor.Kv
         Math.max(voltageMin, voltage)
         Math.min(voltageMax, voltage)
         SmartDashboard.putNumber("Voltage min", voltageMin)

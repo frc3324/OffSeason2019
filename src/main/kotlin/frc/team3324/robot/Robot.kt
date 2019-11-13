@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.livewindow.LiveWindow
+import edu.wpi.first.wpilibj.Threads
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team3324.robot.arm.Arm
+import frc.team3324.robot.arm.commands.ArmTracker
 
 import frc.team3324.robot.drivetrain.DriveTrain
 import frc.team3324.robot.drivetrain.commands.teleop.Drive
@@ -44,6 +47,13 @@ class Robot : TimedRobot() {
         CameraServer.getInstance().startAutomaticCapture(0)
 
         CameraServer.getInstance().putVideo("Camera output", 240, 144)
+        Threads.setCurrentThreadPriority(true, 40)
+        Thread.sleep(10000)
+    }
+
+    fun enabledInit() {
+       Scheduler.getInstance().add(ArmTracker)
+       Scheduler.getInstance().add(Camera)
     }
 
     override fun robotPeriodic() {
@@ -51,10 +61,11 @@ class Robot : TimedRobot() {
     }
 
     override fun autonomousInit() {
-        Scheduler.getInstance().add(Camera)
+        enabledInit()
         DriveTrain.shifterStatus = Consts.DriveTrain.HIGH_GEAR
     }
     override fun teleopInit() {
+        enabledInit()
         Scheduler.getInstance().add(DataCollector)
     }
 

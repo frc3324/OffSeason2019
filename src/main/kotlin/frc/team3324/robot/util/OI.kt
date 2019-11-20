@@ -4,17 +4,15 @@ import edu.wpi.first.wpilibj.GenericHID
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.buttons.JoystickButton
 import frc.team3324.lib.commands.MotorCommand
+import frc.team3324.lib.commands.PIDCommand
+import frc.team3324.lib.commands.PneumaticShiftCommand
 import frc.team3324.robot.Robot
 import frc.team3324.robot.arm.Arm
 import frc.team3324.robot.arm.commands.ResetArm
 import frc.team3324.robot.arm.commands.StopArm
 import frc.team3324.robot.climber.Climber
 import frc.team3324.robot.drivetrain.DriveTrain
-import frc.team3324.robot.drivetrain.commands.teleop.ShiftGears
-import frc.team3324.robot.intake.cargo.commands.Intake
-import frc.team3324.robot.intake.cargo.commands.Outtake
 import frc.team3324.robot.intake.hatch.Hatch
-import frc.team3324.robot.intake.hatch.commands.SwitchIntake
 
 object OI {
     val oneEightyDegree = PIDCommand(0.55, 0.001, 0.0, Math.toRadians(180.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
@@ -62,11 +60,11 @@ object OI {
     val primaryRightX get() = primaryController.getX(GenericHID.Hand.kRight)
 
     init {
-        PRIMARY_RIGHT_BUMPER.whenPressed(PneumaticShift(Hatch.hatchIntake))
-        PRIMARY_LEFT_BUMPER.whenPressed(PneumaticShift(DriveTrain.gearShifter))
+        PRIMARY_RIGHT_BUMPER.whenPressed(PneumaticShiftCommand(Hatch.hatchIntake))
+        PRIMARY_LEFT_BUMPER.whenPressed(PneumaticShiftCommand(DriveTrain.gearShifter))
 
-        PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
-        PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
+        PRIMARY_START_BUTTON.whenPressed(PneumaticShiftCommand(Climber.frontClimber))
+        PRIMARY_BACK_BUTTON.whenPressed(PneumaticShiftCommand(Climber.backClimber))
 
         SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
         SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)

@@ -12,7 +12,6 @@ import frc.team3324.robot.arm.commands.ControlArm
 import frc.team3324.robot.util.Consts
 import frc.team3324.robot.util.Motors
 import frc.team3324.robot.util.OI
-import frc.team3324.robot.util.PredictiveCurrentLimiting
 import frc.team3324.robot.Robot
 import frc.team3324.robot.drivetrain.DriveTrain
 
@@ -20,7 +19,6 @@ object Arm: Subsystem() {
     private val encoder = Encoder(Consts.Arm.ENCODER_PORT_A, Consts.Arm.ENCODER_PORT_B, true, CounterBase.EncodingType.k4X)
     private val frontSwitch = DigitalInput(Consts.Arm.FRONT_LIMIT_SWITCH)
     private val backSwitch = DigitalInput(Consts.Arm.BACK_LIMIT_SWITCH)
-    private val currentLimiter = PredictiveCurrentLimiting(Motors.MiniCim(3.0), 32.0, -32.0)
 
     val frontSwitchStatus get() = frontSwitch.get()
     val backSwitchStatus get() = backSwitch.get()
@@ -63,12 +61,6 @@ object Arm: Subsystem() {
         }
         val feedforward = 0.06 * Math.cos(getArmRadians())
         speed += feedforward
-        val pdpVoltage = Robot.pdp.voltage
-        SmartDashboard.putNumber("Non-limited Voltage", speed * pdpVoltage)
-        val voltage = currentLimiter.limit(speed * pdpVoltage, acceleration)
-        speed = voltage / pdpVoltage
-        SmartDashboard.putNumber("Pdp voltage", Robot.pdp.voltage)
-        SmartDashboard.putNumber("Arm current", armMotorOne.outputCurrent * 3)
         armMotorOne.set(speed)
     }
 

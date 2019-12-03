@@ -53,6 +53,7 @@ dependencies {
     compile wpi.deps.vendor.java()
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
+    compile files('libs/wpilibNewCommands-java-2020.1.1-beta-3.jar', 'libs/wpilibj-java-2020.1.1-beta-3.jar')
 
     // We need to add the Kotlin stdlib in order to use most Kotlin language features.
     compile "org.jetbrains.kotlin:kotlin-stdlib"

@@ -1,4 +1,4 @@
-package frc.team3324.robot.util
+package frc.team3324.lib.physics
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import kotlin.math.sign

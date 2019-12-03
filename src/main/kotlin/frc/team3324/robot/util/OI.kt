@@ -3,6 +3,7 @@ package frc.team3324.robot.util
 import edu.wpi.first.wpilibj.GenericHID
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.buttons.JoystickButton
+import frc.team3324.lib.commands.PneumaticShift
 import frc.team3324.robot.arm.Arm
 import frc.team3324.robot.arm.commands.ResetArm
 import frc.team3324.robot.arm.commands.StopArm

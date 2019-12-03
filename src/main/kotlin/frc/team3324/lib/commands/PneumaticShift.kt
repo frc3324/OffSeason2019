@@ -1,9 +1,9 @@
-package frc.team3324.robot.util
+package frc.team3324.lib.commands
 
 import edu.wpi.first.wpilibj.DoubleSolenoid
 import edu.wpi.first.wpilibj.command.InstantCommand
 
-class PneumaticShift(val solenoid: DoubleSolenoid): InstantCommand() {
+class PneumaticShift (val solenoid: DoubleSolenoid): InstantCommand() {
 
     override fun initialize() {
         if (solenoid.get() == DoubleSolenoid.Value.kForward) {

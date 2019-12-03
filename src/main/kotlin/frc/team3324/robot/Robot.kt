@@ -16,6 +16,7 @@ import frc.team3324.robot.drivetrain.commands.teleop.Drive
 import frc.team3324.robot.intake.cargo.Cargo
 import frc.team3324.robot.intake.hatch.Hatch
 import frc.team3324.robot.util.*
+import edu.wpi.first.wpilibj.util.Units
 
 class Robot : TimedRobot() {
     private val compressor = Compressor(1)
@@ -25,6 +26,7 @@ class Robot : TimedRobot() {
     }
 
     override fun robotInit() {
+        println("Beep.")
         LiveWindow.disableAllTelemetry()
 
         compressor.start()

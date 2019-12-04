@@ -8,6 +8,7 @@ import frc.team3324.robot.arm.commands.ResetArm
 import frc.team3324.robot.arm.commands.StopArm
 import frc.team3324.robot.climber.Climber
 import frc.team3324.robot.drivetrain.DriveTrain
+import frc.team3324.robot.drivetrain.commands.teleop.FollowPath
 import frc.team3324.robot.drivetrain.commands.teleop.ShiftGears
 import frc.team3324.robot.intake.cargo.commands.Intake
 import frc.team3324.robot.intake.cargo.commands.Outtake
@@ -65,6 +66,7 @@ object OI {
 
         PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
         PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
+        PRIMARY_A_BUTTON.whenPressed(FollowPath(TrapezoidProfile.State(0.2, 0.0), 0.5, (1/Consts.DriveTrain.HIGH_GEAR_MAX_VELOCITY)))
 
         SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
         SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)

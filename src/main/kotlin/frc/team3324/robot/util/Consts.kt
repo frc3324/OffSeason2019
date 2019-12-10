@@ -26,7 +26,7 @@ object Consts {
         const val DISTANCE_BETWEEN_WHEELS = 0.61
 
         const val HIGH_GEAR_MAX_VELOCITY = 3.4072
-        const val HIGH_GEAR_MAX_ACCELERATION = 4.38
+        const val HIGH_GEAR_MAX_ACCELERATION = 3.00
         const val LOW_GEAR_MAX_VELOCITY = 1.8
         const val LOW_GEAR_MAX_ACCELERATION = 6.51
 
@@ -45,8 +45,9 @@ object Consts {
 
         const val ENCODER_PORT_A = 7
         const val ENCODER_PORT_B = 6
+        const val GEAR_RATIO = 147
 
-        const val ENCODER_TICKS_PER_REV = 256
+        const val ENCODER_TICKS_PER_REV = 256.0
         const val DISTANCE_PER_PULSE = Math.PI / (ENCODER_TICKS_PER_REV / 2)
 
         const val FRONT_LIMIT_SWITCH = 9

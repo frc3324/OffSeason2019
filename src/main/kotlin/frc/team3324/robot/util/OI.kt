@@ -66,7 +66,7 @@ object OI {
 
         PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
         PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
-        PRIMARY_A_BUTTON.whenPressed(FollowPath(TrapezoidProfile.State(0.2, 0.0), 0.5, (1/Consts.DriveTrain.HIGH_GEAR_MAX_VELOCITY)))
+        PRIMARY_A_BUTTON.whenPressed(FollowPath(TrapezoidProfile.State(0.2, 0.0), 5.0, (1/Consts.DriveTrain.HIGH_GEAR_MAX_VELOCITY)))
 
         SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
         SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)

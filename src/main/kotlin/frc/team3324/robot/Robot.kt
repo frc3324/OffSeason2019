@@ -52,12 +52,12 @@ class Robot : TimedRobot() {
     }
 
     fun enabledInit() {
-       Scheduler.getInstance().add(ArmTracker)
        Scheduler.getInstance().add(Camera)
     }
 
     override fun robotPeriodic() {
         Scheduler.getInstance().run()
+        ArmTracker.run()
     }
 
     override fun autonomousInit() {
@@ -66,7 +66,7 @@ class Robot : TimedRobot() {
     }
     override fun teleopInit() {
         enabledInit()
-        Scheduler.getInstance().add(DataCollector)
+//        Scheduler.getInstance().add(DataCollector)
     }
 
     override fun teleopPeriodic() {

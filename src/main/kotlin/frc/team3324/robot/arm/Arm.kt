@@ -20,7 +20,7 @@ object Arm: Subsystem() {
     private val encoder = Encoder(Consts.Arm.ENCODER_PORT_A, Consts.Arm.ENCODER_PORT_B, true, CounterBase.EncodingType.k4X)
     private val frontSwitch = DigitalInput(Consts.Arm.FRONT_LIMIT_SWITCH)
     private val backSwitch = DigitalInput(Consts.Arm.BACK_LIMIT_SWITCH)
-    private val currentLimiter = PredictiveCurrentLimiting(Motors.MiniCim(3.0), 32.0, -32.0)
+    private val currentLimiter = PredictiveCurrentLimiting(Motors.MiniCim(1.0), 8.0, -8.0)
 
     val frontSwitchStatus get() = frontSwitch.get()
     val backSwitchStatus get() = backSwitch.get()
@@ -42,7 +42,7 @@ object Arm: Subsystem() {
 
     private fun initializeCurrentLimiting() {
         armMotorOne.configContinuousCurrentLimit(12)
-        armMotorOne.enableCurrentLimit(true)
+        armMotorOne.enableCurrentLimit(false)
 
         armMotorTwo.follow(armMotorOne)
         armMotorThree.follow(armMotorOne)
@@ -65,9 +65,9 @@ object Arm: Subsystem() {
         speed += feedforward
         val pdpVoltage = Robot.pdp.voltage
         SmartDashboard.putNumber("Non-limited Voltage", speed * pdpVoltage)
-        val voltage = currentLimiter.limit(speed * pdpVoltage, acceleration)
+        val voltage = currentLimiter.limit(speed * pdpVoltage, velocity)
         speed = voltage / pdpVoltage
-        SmartDashboard.putNumber("Pdp voltage", Robot.pdp.voltage)
+        SmartDashboard.putNumber("Arm Position", encoder.distance)
         SmartDashboard.putNumber("Arm current", armMotorOne.outputCurrent * 3)
         armMotorOne.set(speed)
     }

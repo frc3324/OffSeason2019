@@ -10,17 +10,16 @@ import edu.wpi.first.wpilibj.command.Subsystem
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import frc.team3324.robot.arm.commands.ControlArm
 import frc.team3324.robot.util.Consts
-import frc.team3324.robot.util.Motors
-import frc.team3324.robot.util.OI
-import frc.team3324.robot.util.PredictiveCurrentLimiting
+import frc.team3324.robot.util.physics.Motors
+import frc.team3324.robot.util.physics.PredictiveCurrentLimiting
 import frc.team3324.robot.Robot
-import frc.team3324.robot.drivetrain.DriveTrain
 
 object Arm: Subsystem() {
     private val encoder = Encoder(Consts.Arm.ENCODER_PORT_A, Consts.Arm.ENCODER_PORT_B, true, CounterBase.EncodingType.k4X)
     private val frontSwitch = DigitalInput(Consts.Arm.FRONT_LIMIT_SWITCH)
     private val backSwitch = DigitalInput(Consts.Arm.BACK_LIMIT_SWITCH)
-    private val currentLimiter = PredictiveCurrentLimiting(Motors.MiniCim(1.0), 8.0, -8.0)
+    val motor = Motors.MiniCim(3.0)
+    private val currentLimiter = PredictiveCurrentLimiting(motor, 8.0, -8.0)
 
     val frontSwitchStatus get() = frontSwitch.get()
     val backSwitchStatus get() = backSwitch.get()

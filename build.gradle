@@ -49,6 +49,7 @@ dependencies {
 
     // We need to add the Kotlin stdlib in order to use most Kotlin language features.
     compile "org.jetbrains.kotlin:kotlin-stdlib"
+    compile "org.knowm.xchart:xchart:3.6.0"
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

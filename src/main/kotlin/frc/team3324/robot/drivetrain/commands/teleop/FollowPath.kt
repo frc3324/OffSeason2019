@@ -24,7 +24,7 @@ class FollowPath(val goal: TrapezoidProfile.State, val kp: Double, val kv: Doubl
     }
 
     override fun execute() {
-        var calculatedValue = 0.0
+        var calculatedValue: Double
         timeDifference = Timer.getFPGATimestamp() - timeStart
         SmartDashboard.putNumber("time diff", timeDifference)
         val distance_covered: Double = DriveTrain.getAverageDistance() - encoderOffset

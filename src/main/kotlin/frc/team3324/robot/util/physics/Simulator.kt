@@ -1,5 +1,7 @@
 package frc.team3324.robot.util.physics
 
+import frc.team3324.robot.util.physics.SimulationUtility.clampVoltage
+import java.io.File
 import kotlin.math.pow
 
 class ArmSimulator(val timeLimit: Double, val motor: Motors.Motor, val gearRatio: Double, val momentOfInertia: Double) {
@@ -15,13 +17,16 @@ class ArmSimulator(val timeLimit: Double, val motor: Motors.Motor, val gearRatio
         var velocity = startingVelocity
         var acceleration = calculateAcceleration(useOutput(position, velocity), velocity)
         val positionList = mutableListOf(position)
+        val timeList = mutableListOf(time)
         while (time < timeLimit) {
             position += velocity * timeStep
             velocity += acceleration * timeStep
-            acceleration = calculateAcceleration(useOutput(position, velocity), velocity)
+            acceleration = calculateAcceleration(clampVoltage(useOutput(position, velocity)), velocity)
             time += timeStep
             positionList.add(position)
+            timeList.add(time)
         }
+        SimulationUtility.plot(positionList, timeList, "./armPositions.csv", "Position")
         return positionList
     }
 
@@ -45,4 +50,6 @@ class ArmSimulator(val timeLimit: Double, val motor: Motors.Motor, val gearRatio
     fun simulateVelocity(useOutput: (Double) -> Double): List<Double> {
         return simulateVelocity(0.0, useOutput)
     }
+
+
 }

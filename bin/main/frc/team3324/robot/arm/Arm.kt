@@ -63,10 +63,10 @@ object Arm: Subsystem() {
         }
         val feedforward = 0.06 * Math.cos(getArmRadians())
         speed += feedforward
-//        val pdpVoltage = Robot.pdp.voltage
-//        SmartDashboard.putNumber("Non-limited Voltage", speed * pdpVoltage)
-//        val voltage = currentLimiter.limit(speed * pdpVoltage, velocity)
-//        speed = voltage / pdpVoltage
+        val pdpVoltage = Robot.pdp.voltage
+        SmartDashboard.putNumber("Non-limited Voltage", speed * pdpVoltage)
+        val voltage = currentLimiter.limit(speed * pdpVoltage, velocity)
+        speed = voltage / pdpVoltage
         SmartDashboard.putNumber("Arm Position", encoder.distance)
         SmartDashboard.putNumber("Arm current", armMotorOne.outputCurrent * 3)
         armMotorOne.set(speed)

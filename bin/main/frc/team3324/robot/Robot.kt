@@ -1,6 +1,5 @@
 package frc.team3324.robot
 
-import com.revrobotics.CANSparkMax
 import edu.wpi.first.cameraserver.CameraServer
 import edu.wpi.first.wpilibj.Compressor
 import edu.wpi.first.wpilibj.PowerDistributionPanel

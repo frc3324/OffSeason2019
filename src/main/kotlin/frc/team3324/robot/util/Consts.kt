@@ -25,6 +25,8 @@ object Consts {
         const val DISTANCE_PER_PULSE = CIRCUMFERENCE / PULSES
         const val DISTANCE_BETWEEN_WHEELS = 0.61
 
+        const val HIGH_GEAR_RATIO = 9.167
+        const val LOW_GEAR_RATIO = 20.833
         const val HIGH_GEAR_MAX_VELOCITY = 3.4072
         const val HIGH_GEAR_MAX_ACCELERATION = 3.00
         const val LOW_GEAR_MAX_VELOCITY = 1.8

@@ -15,8 +15,8 @@ import frc.team3324.robot.intake.hatch.Hatch
 import frc.team3324.robot.util.physics.TrapezoidProfile
 
 object OI {
-    val oneEightyDegree = PIDCommand(0.55, 0.001, 0.0, Math.toRadians(180.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
-    val zeroDegree = PIDCommand(0.55, 0.001, 0.0, Math.toRadians(0.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
+//    val oneEightyDegree = PIDCommand(0.55, 0.001, 0.0, Math.toRadians(180.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
+//    val zeroDegree = PIDCommand(0.55, 0.001, 0.0, Math.toRadians(0.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed)
 
     private const val BUTTON_A = 1
     private const val BUTTON_B = 2
@@ -60,21 +60,21 @@ object OI {
     val primaryRightX get() = primaryController.getX(GenericHID.Hand.kRight)
 
     init {
-        PRIMARY_RIGHT_BUMPER.whenPressed(PneumaticShift(Hatch.hatchIntake))
-        PRIMARY_LEFT_BUMPER.whenPressed(PneumaticShift(DriveTrain.gearShifter))
-
-        PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
-        PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
-        PRIMARY_A_BUTTON.whenPressed(FollowPath(TrapezoidProfile.State(0.2, 0.0), 5.0, (1/Consts.DriveTrain.HIGH_GEAR_MAX_VELOCITY)))
-
-        SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
-        SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)
-        SECONDARY_A_BUTTON.whenPressed(PIDCommand(0.65, 0.001, 0.0, Math.toRadians(90.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed))
-        SECONDARY_B_BUTTON.whenPressed(StopArm())
-        SECONDARY_START_BUTTON.whenPressed(ResetArm())
-
-        SECONDARY_X_BUTTON.whileHeld(Intake())
-        SECONDARY_Y_BUTTON.whileHeld(Outtake())
+//        PRIMARY_RIGHT_BUMPER.whenPressed(PneumaticShift(Hatch.hatchIntake))
+//        PRIMARY_LEFT_BUMPER.whenPressed(PneumaticShift(DriveTrain.gearShifter))
+//
+//        PRIMARY_BACK_BUTTON.whenPressed(PneumaticShift(Climber.frontClimber))
+//        PRIMARY_START_BUTTON.whenPressed(PneumaticShift(Climber.backClimber))
+//        PRIMARY_A_BUTTON.whenPressed(FollowPath(TrapezoidProfile.State(0.2, 0.0), 5.0, (1/Consts.DriveTrain.HIGH_GEAR_MAX_VELOCITY)))
+//
+//        SECONDARY_RIGHT_BUMPER.whenPressed(oneEightyDegree)
+//        SECONDARY_LEFT_BUMPER.whenPressed(zeroDegree)
+//        SECONDARY_A_BUTTON.whenPressed(PIDCommand(0.65, 0.001, 0.0, Math.toRadians(90.0), 0.01, Arm, Arm::getArmRadians, Arm::setSpeed))
+//        SECONDARY_B_BUTTON.whenPressed(StopArm())
+//        SECONDARY_START_BUTTON.whenPressed(ResetArm())
+//
+//        SECONDARY_X_BUTTON.whileHeld(Intake())
+//        SECONDARY_Y_BUTTON.whileHeld(Outtake())
     }
 
 

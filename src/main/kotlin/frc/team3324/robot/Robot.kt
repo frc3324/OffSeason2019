@@ -19,7 +19,7 @@ import frc.team3324.robot.intake.hatch.Hatch
 import frc.team3324.robot.util.*
 
 class Robot : TimedRobot() {
-    private val compressor = Compressor(1)
+//    private val compressor = Compressor(1)
 
     companion object {
         val pdp = PowerDistributionPanel()
@@ -28,42 +28,40 @@ class Robot : TimedRobot() {
     override fun robotInit() {
         LiveWindow.disableAllTelemetry()
 
-        compressor.start()
+//        compressor.start()
 
-        Camera
+//        Camera
         Drive
         DriveTrain
-        OI
-        Arm
-        Hatch
-        Cargo
-        LED
+//        OI
+//        Arm
+//        Hatch
+//        Cargo
+//        LED
 
-        LED.redStatus = true
-        LED.blueStatus = true
-        LED.greenStatus = true
+//        LED.redStatus = true
+//        LED.blueStatus = true
+//        LED.greenStatus = true
 
 
-        CameraServer.getInstance().startAutomaticCapture(1)
-        CameraServer.getInstance().startAutomaticCapture(0)
-
-        CameraServer.getInstance().putVideo("Camera output", 240, 144)
-        Threads.setCurrentThreadPriority(true, 40)
-        Thread.sleep(10000)
+//        CameraServer.getInstance().startAutomaticCapture(1)
+//        CameraServer.getInstance().startAutomaticCapture(0)
+//
+//        CameraServer.getInstance().putVideo("Camera output", 240, 144)
     }
 
     fun enabledInit() {
-       Scheduler.getInstance().add(Camera)
+//       Scheduler.getInstance().add(Camera)
     }
 
     override fun robotPeriodic() {
         Scheduler.getInstance().run()
-        ArmTracker.run()
+//        ArmTracker.run()
     }
 
     override fun autonomousInit() {
         enabledInit()
-        DriveTrain.shifterStatus = Consts.DriveTrain.HIGH_GEAR
+//        DriveTrain.shifterStatus = Consts.DriveTrain.HIGH_GEAR
     }
     override fun teleopInit() {
         enabledInit()

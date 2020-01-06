@@ -10,7 +10,7 @@ class StopArm: InstantCommand() {
     }
 
     override fun initialize() {
-        OI.oneEightyDegree.stopNotifier()
-        OI.zeroDegree.stopNotifier()
+//        OI.oneEightyDegree.stopNotifier()
+//        OI.zeroDegree.stopNotifier()
     }
 }
